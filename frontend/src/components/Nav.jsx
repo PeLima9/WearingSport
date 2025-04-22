@@ -1,41 +1,22 @@
-import React from "react";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Nav.css';
 
 const Nav = () => {
-    return (
-        <nav className="bg-blue-600 text-white shadow-md">
-            <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-                <div className="text-lg font-bold">MyApp</div>
-                <ul className="flex space-x-4">
-                    <li>
-                        <a href="/" className="hover:text-gray-200">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/" className="hover:text-gray-200">
-                            Marcas
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/" className="hover:text-gray-200">
-                            Categorias  
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/" className="hover:text-gray-200">
-                            Ofertas
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/" className="hover:text-gray-200">
-                           Sobre Nosotros
-                        </a>
-                    </li>
-                 
-                </ul>
-            </div>
-        </nav>
-    );
+  return (
+    <nav className="navbar">
+      <div className="logo">
+        <h1>WearingSport</h1>
+      </div>
+      <ul className="nav-links">
+        <li><Link to="/">Inicio</Link></li>
+        <li><Link to="/marcas">Marcas</Link></li>
+        <li><Link to="/categorias">Categorías</Link></li>
+        <li><Link to="/ofertas">Ofertas</Link></li>
+        <li><Link to="/nosotros">Sobre Nosotros</Link></li>
+      </ul>
+    </nav>
+  );
 };
 
 export default Nav;

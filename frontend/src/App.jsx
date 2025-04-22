@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import {BrowserRouter as Router, Routes, Route} from 'react-router'
 import Nav from './components/Nav'
-import Inicio from './pages/Inicio/Inicio'
+import Home from './pages/Inicio/Home'
+import Marcas from './pages/Inicio/Marcas'
 import './App.css'
 
 function App() {
@@ -14,8 +15,8 @@ function App() {
 
            
                 <Routes>
-                    <Route path='/' element={<Inicio/>}/>
-                    <Route />
+                    <Route path='/' element={<Home/>}/>
+                    <Route path='marcas' element={<Marcas/>}/>
                     <Route />
                     <Route  />
                     <Route  />
