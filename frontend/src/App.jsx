@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import {BrowserRouter as Router, Routes, Route} from 'react-router'
 import Nav from './components/Nav'
-import Home from './pages/Inicio/Home'
-import Marcas from './pages/Inicio/Marcas'
+import Home from './pages/Home'
+import Marcas from './pages/Marcas'
 import './App.css'
 
 function App() {
