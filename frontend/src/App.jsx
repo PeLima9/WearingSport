@@ -20,6 +20,12 @@ import ProducDetail from './pages/ProductDetail';
 //////////// fin de importaciones de las pantallas de marca
 //////importacion de las pantallas de categorias 
 import Running from './pages/Runnig';
+import Entrenamiento from './pages/Entrenamiento';
+
+
+////Terminos y condiciones + comentarios "reseñas"
+import Terminos from './components/Terminos';
+
 
 import './App.css';
 
@@ -68,6 +74,12 @@ function App() {
 
           {/* Rutas marcas */}
           <Route path="/categorias/runinnyatletismo" element={<Running />} />
+          <Route path="/categorias/entrenamientoygym" element={<Entrenamiento />} />
+
+          {/* Apartado para lo de terminos y condiciones*/}
+          <Route path="/terminos" element={<Terminos />} />
+
+
 
 
 
