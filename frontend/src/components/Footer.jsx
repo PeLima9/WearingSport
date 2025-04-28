@@ -26,7 +26,7 @@ const Footer = () => {
             <a href="#">Comentarios</a>
           </div>
           <div className="footer-links">
-            <a href="terminos">Términos y condiciones</a>
+            <a href="/terminos">Términos y condiciones</a>
           </div>
         </div>
         
