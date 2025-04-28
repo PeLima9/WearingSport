@@ -61,16 +61,19 @@ const Nav = () => {
             <span>Categorías</span>
             {showCategoriesMenu && (
               <ul className="categories-dropdown">
-                <li><Link to="/categorias/zapatos">Zapatos</Link></li>
-                <li><Link to="/categorias/ropa">Ropa</Link></li>
-                <li><Link to="/categorias/accesorios">Accesorios</Link></li>
+                <li><Link to="/categorias/runinnyatletismo">Runinng y Atletismo</Link></li>
+                <li><Link to="/categorias/entrenamientoygym">Entrenamiento y Gym</Link></li>
+                <li><Link to="/categorias/deportesdecancha">Deportes de Cancha</Link></li>
+                <li><Link to="/categorias/futbolyfutbolsala">Futbol y futbol sala</Link></li>
+                <li><Link to="/categorias/ciclismo">Ciclismo</Link></li>
+
               </ul>
             )}
           </li>
 
           <li><Link to="/ofertas">Ofertas</Link></li>
-          <li><Link to="/nosotros">Sobre Nosotros</Link></li>
-        </ul>
+          <li><Link to="/aboutus">Sobre Nosotros</Link></li>
+          </ul>
       )}
 
       {/* Siempre mostrar los íconos de login y carrito */}

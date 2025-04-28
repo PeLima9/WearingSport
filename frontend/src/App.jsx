@@ -6,6 +6,8 @@ import Marcas from './pages/Marcas';
 import Login from './pages/Login';
 import Recuperar from './components/Recuperar';
 import CrearCuenta from './components/CrearCuenta';
+import About from './pages/About';
+//////// importaciones de las paginas de marcas
 import Nike from './pages/Nike';
 import Adidas from './pages/Adidas';
 import Puma from './pages/Puma';
@@ -14,6 +16,11 @@ import UnderArmour from './pages/UnderArmour';
 import Asics from './pages/Asics';
 import Converse from './pages/Converse';
 import Hoka from './pages/Hoka';
+import ProducDetail from './pages/ProductDetail';
+//////////// fin de importaciones de las pantallas de marca
+//////importacion de las pantallas de categorias 
+import Running from './pages/Runnig';
+
 import './App.css';
 
 function App() {
@@ -28,6 +35,12 @@ function App() {
                       location.pathname.startsWith("/marcas/converse") ||
                       location.pathname.startsWith("/marcas/hoka");
 
+  const isLoginPage = location.pathname === "/login" ||
+                      location.pathname === "/recuperar" ||
+                      location.pathname === "/crear-cuenta";
+
+  const hideFooter = isMarcaPage || isLoginPage;
+
   return (
     <div className="app-container">
       <Nav />
@@ -39,8 +52,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/recuperar" element={<Recuperar />} />
           <Route path="/crear-cuenta" element={<CrearCuenta />} />
+          <Route path="/aboutus" element={<About />} />
 
-          
           {/* Rutas marcas */}
           <Route path="/marcas/nike" element={<Nike />} />
           <Route path="/marcas/adidas" element={<Adidas />} />
@@ -50,11 +63,19 @@ function App() {
           <Route path="/marcas/asics" element={<Asics />} />
           <Route path="/marcas/converse" element={<Converse />} />
           <Route path="/marcas/hoka" element={<Hoka />} />
+          <Route path="/producto/:id" element={<ProducDetail />} />
+
+
+          {/* Rutas marcas */}
+          <Route path="/categorias/runinnyatletismo" element={<Running />} />
+
+
+
         </Routes>
       </div>
 
-      {/* Ahora el footer va siempre abajo */}
-      {!isMarcaPage && <Footer />}
+      {/* Footer visible solo si no estamos en login o en marca */}
+      {!hideFooter && <Footer />}
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './Footer.css';
 
 const Footer = () => {
@@ -11,11 +10,11 @@ const Footer = () => {
           <div className="footer-title">WearingSport</div>
           <div className="footer-contact">
             <a href="mailto:www.@wearingsport.com">
-              <img src="/images/email-icon.png" alt="Email" />
+              <i className="fas fa-envelope"></i>
               www.@wearingsport.com
             </a>
             <a href="tel:7082-9812">
-              <img src="/images/phone-icon.png" alt="Teléfono" />
+              <i className="fas fa-phone-alt"></i>
               7082-9812
             </a>
           </div>
@@ -36,13 +35,13 @@ const Footer = () => {
           <div className="footer-social-title">Síguenos en:</div>
           <div className="footer-social-icons">
             <a href="#" className="social-icon">
-              <img src="/images/facebook-icon.png" alt="Facebook" />
+              <i className="fab fa-facebook-f"></i>
             </a>
             <a href="#" className="social-icon">
-              <img src="/images/instagram-icon.png" alt="Instagram" />
+              <i className="fab fa-instagram"></i>
             </a>
             <a href="#" className="social-icon">
-              <img src="/images/tiktok-icon.png" alt="TikTok" />
+              <i className="fab fa-tiktok"></i>
             </a>
           </div>
         </div>
@@ -51,4 +50,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;  
+export default Footer;

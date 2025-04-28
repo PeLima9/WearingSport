@@ -1,0 +1,56 @@
+/* src/components/AboutUs.css */
+
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .left-section, 
+  .right-section {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .main-title {
+    font-size: 2.5rem;
+    text-align: left;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .subtitle {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+  }
+  
+  .text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #666;
+  }
+  
+  .box {
+    background-color: #ffffff; /* Fondo blanco para los recuadros */
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 95%;
+    transition: transform 0.3s ease; /* Animación suave */
+  }
+  
+  .box:hover {
+    transform: translateY(-5px); /* Efecto al pasar el mouse */
+  }
+  
+  @media (max-width: 768px) {
+    .about-container {
+      flex-direction: column;
+    }
+  }
+  

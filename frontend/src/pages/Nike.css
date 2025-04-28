@@ -7,11 +7,17 @@
   
   /* Recuadro pequeño para el título */
   .brand-box {
-    background-color: #f2f2f2;
-    padding: 15px 30px;
-    display: inline-block;
-    border-radius: 10px;
-    margin-bottom: 30px;
+    background-color: #333; /* Fondo oscuro para el recuadro */
+    color: white;           /* Color del texto */
+    padding: 10px 20px;     /* Espacio interno (10px arriba y abajo, 20px a los lados) */
+    border-radius: 5px;     /* Bordes redondeados */
+    display: inline-block;  /* Para ajustar el tamaño al texto */
+    margin-left: -1150px;     /* Moverlo hacia la izquierda mucho más */
+    margin-bottom: 30px;    /* Espacio debajo del recuadro */
+  }
+  
+  h1 {
+    margin: 0; /* Elimina el margen por defecto de los encabezados */
   }
   
   /* Grilla de productos: 4 columnas */
@@ -55,6 +61,7 @@
   .carousel {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 30px;
   }
   
@@ -71,5 +78,24 @@
   
   .carousel-button:hover {
     background-color: #333;
+  }
+  
+  .carousel-pages {
+    display: flex;
+    align-items: center;
+  }
+  
+  .page-number {
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  .page-number.active {
+    background-color: #666;
   }
   
