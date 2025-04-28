@@ -1,0 +1,101 @@
+/* Contenedor principal */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    flex-direction: column; /* Para colocar todo en columna */
+  }
+  
+  .login-title {
+    color: #044B7F; /* Color azul para el título */
+    font-size: 24px;
+    margin-bottom: 20px; /* Separación entre el título y el recuadro */
+    text-align: center; /* Centrado del título */
+  }
+  
+  /* Recuerda que el recuadro donde están los inputs está dentro de .login-box */
+  .login-box {
+    background-color: #044B7F;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    font-size: 14px;
+    color: #333;
+    display: block;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .forgot-password {
+    margin: 10px 0;
+  }
+  
+  .forgot-password a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Botón de inicio de sesión */
+  .login-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #b8a146; /* Aseguramos que sea el color amarillo */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Para transición suave */
+  }
+  
+  .login-button:hover {
+    background-color: #e9bd0e; /* Puedes cambiar este color si lo prefieres */
+  }
+  
+  .create-account {
+    margin-top: 15px;
+  }
+  
+  .create-account a {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  
+  .create-account a:hover {
+    text-decoration: underline;
+  }
+
+  /* Estilo para el mensaje de error */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  

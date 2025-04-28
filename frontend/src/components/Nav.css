@@ -1,34 +1,129 @@
+/* Estilo del navbar */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1a1a1a;
-    padding: 20px 40px;
-    color: white;
-  }
-  
-  .logo h1 {
-    margin: 0;
-    font-size: 24px;
-    color: #fff;
-  }
-  
-  .nav-links {
-    list-style-type: none;
-    display: flex;
-    gap: 30px;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-links li a {
-    text-decoration: none;
-    color: #bbb;
-    font-weight: 500;
-    transition: color 0.2s ease;
-  }
-  
-  .nav-links li a:hover {
-    color: #00bcd4;
-  }
-  
+  display: flex;
+  justify-content: space-between; /* Para que los íconos estén al final */
+  align-items: center;
+  background-color: #610345; /* Color de fondo */
+  padding: 20px 40px;
+  color: white;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #fff;
+}
+
+/* Eliminar los puntos de lista en los enlaces de navegación */
+.nav-links {
+  list-style-type: none; /* Elimina los bullets de los enlaces */
+  display: flex;
+  justify-content: center; /* Centra los enlaces */
+  flex: 1; /* Hace que los enlaces ocupen el espacio restante */
+  gap: 30px; /* Espacio entre los enlaces */
+  margin: 0;
+  padding: 0;
+}
+
+/* Asegura que los <li> no tengan lista tipo punto */
+.nav-links li {
+  list-style-type: none; /* Elimina los bullets específicamente para los <li> */
+  margin-right: 20px; /* Espacio entre los elementos */
+  position: relative; /* Necesario para el submenú */
+}
+
+/* Estilo para los enlaces en el menú principal */
+.nav-links li a {
+  text-decoration: none;
+  color: #beccd6; /* Color por defecto para los enlaces del menú principal */
+  font-weight: 500;
+  transition: color 0.2s ease;
+  display: inline-flex; /* Hace que el enlace se comporte como un bloque en línea */
+  align-items: center; /* Alinea los íconos con el texto */
+}
+
+/* Cambiar color al pasar el mouse por encima */
+.nav-links li a:hover {
+  color: #00bcd4; /* Color de hover para los enlaces principales */
+}
+
+/* Estilo para los enlaces dentro del submenú */
+.brands-dropdown a,
+.categories-dropdown a {
+  text-decoration: none;
+  color: #3190f0 !important; /* Color azul por defecto para los enlaces del submenú */
+  font-weight: 400;
+  transition: color 0.2s ease;
+}
+
+/* Cambiar color al pasar el mouse por encima en el submenú */
+.brands-dropdown a:hover,
+.categories-dropdown a:hover {
+  color: #e67e22; /* Color de hover para los enlaces del submenú */
+}
+
+/* Estilo para los íconos */
+.nav-links a svg {
+  margin-right: 8px; /* Espacio entre el icono y el texto */
+  vertical-align: middle; /* Alinea los íconos con el texto */
+}
+
+/* Logo */
+.logo-link {
+  text-decoration: none;
+  color: inherit; /* Hereda el color */
+}
+
+/* Estilos para los íconos de login y carrito */
+.nav-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  list-style-type: none; /* Elimina los bullets de los íconos */
+}
+
+.nav-icons li {
+  list-style-type: none; /* Elimina los bullets de los <li> en la lista de íconos */
+}
+
+.nav-icons li a {
+  color: rgb(14, 2, 2); /* Asegura que los íconos sean blancos */
+  font-size: 24px; /* Tamaño del ícono */
+  transition: color 0.2s ease; /* Transición de color */
+}
+
+/* Evitar que el color de los íconos cambie cuando se pasa el mouse */
+.nav-icons li a:hover {
+  color: white; /* Mantiene el color blanco al hacer hover */
+}
+
+/* Estilo para el submenú de marcas */
+.brands-dropdown,
+.categories-dropdown {
+  position: absolute;
+  top: 100%; /* Lo coloca justo debajo del enlace "Marcas" o "Categorías" */
+  left: 0;
+  background-color: #ffffff; /* Fondo blanco para el submenú */
+  list-style-type: none;
+  padding: 10px;
+  display: none;
+  width: 200px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Agrega sombra para mayor visibilidad */
+}
+
+/* Muestra el submenú cuando el enlace "Marcas" o "Categorías" es hover */
+.nav-links li.brands:hover .brands-dropdown,
+.nav-links li.categories:hover .categories-dropdown {
+  display: block;
+}
+
+.brands-dropdown li,
+.categories-dropdown li {
+  padding: 5px 0;
+}
+
+/* Estilo adicional para ocultar los enlaces de navegación en ciertas rutas (como carrito y login) */
+.nav-links.hidden {
+  display: none; /* Oculta los enlaces cuando tienen la clase 'hidden' */
+}

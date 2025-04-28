@@ -1,0 +1,75 @@
+/* Fondo blanco limpio */
+.nike-page {
+    background-color: white;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  /* Recuadro pequeño para el título */
+  .brand-box {
+    background-color: #f2f2f2;
+    padding: 15px 30px;
+    display: inline-block;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+  
+  /* Grilla de productos: 4 columnas */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    gap: 20px;
+  }
+  
+  /* Cada tarjeta de zapato */
+  .product-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .product-info {
+    margin-top: 10px;
+  }
+  
+  .product-info h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+  }
+  
+  .product-info p {
+    font-size: 1em;
+    color: #555;
+  }
+  
+  /* Botones del carrusel */
+  .carousel {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .carousel-button {
+    background-color: #000;
+    color: white;
+    border: none;
+    margin: 0 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.5em;
+  }
+  
+  .carousel-button:hover {
+    background-color: #333;
+  }
+  
