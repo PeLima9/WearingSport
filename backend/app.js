@@ -7,6 +7,7 @@ import employeesRoutes from "./src/routes/employees.js";
 import productsRoutes from "./src/routes/products.js";
 import reviewsRoutes from "./src/routes/reviews.js";
 import salesRoutes from "./src/routes/sales.js";
+import registerEmpRoutes from "./src/routes/registerEmployees.js"
 
 //Crear constante para la libreria
 const app = express();
@@ -22,6 +23,13 @@ app.use("/api/Employees", employeesRoutes);
 app.use("/api/Products", productsRoutes);
 app.use("/api/Reviews", reviewsRoutes);
 app.use("/api/Sales", salesRoutes);
+
+//Register
+app.use("/api/registerEmployees", registerEmpRoutes);
+//[Register Clients]
+
+//Login
+//[Login]
 
 //Hacer la constante global
 export default app;
