@@ -1,0 +1,40 @@
+/* Estilo para la página de términos */
+.terminos-page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(249, 249, 249, 0.8);  /* Fondo gris claro con opacidad */
+  }
+  
+  /* Estilo para la introducción */
+  .introduccion {
+    margin-bottom: 30px;
+    padding: 10px;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  strong {
+    font-weight: bold;
+  }
+  
+  /* Estilo para el formulario (con fondo transparente) */
+  .formulario-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #cccccc67;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.24);  /* Blanco con opacidad */
+  }
+  
