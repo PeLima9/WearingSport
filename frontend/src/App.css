@@ -1,11 +1,3 @@
-#root {
-  width: 100%;
-  margin: 0 auto;
-  padding: 0;
-  text-align: center;
-}
-
-/* Fondo solo para las páginas normales */
 .background {
   background-image: url('/img/fondo.png');
   background-size: cover;
@@ -14,24 +6,20 @@
   width: 100%;
 }
 
-/* Clase para todo el contenedor principal */
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Que la página siempre ocupe el alto de la ventana */
+  min-height: 100vh;
 }
 
-/* Clase para todo el contenido entre Nav y Footer */
 .page-content {
-  flex: 1; /* El contenido ocupa todo el espacio disponible */
+  flex: 1;
 }
 
-/* Footer se empuja hacia abajo */
 footer {
   margin-top: auto;
 }
 
-/* Lo demás sigue igual */
 .logo {
   height: 6em;
   padding: 1.5em;

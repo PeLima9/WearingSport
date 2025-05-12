@@ -4,10 +4,11 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Marcas from './pages/Marcas';
 import Login from './pages/Login';
+import Carrito from './pages/Carrito';
+import Ofertas from './pages/Ofertas';
 import Recuperar from './components/Recuperar';
 import CrearCuenta from './components/CrearCuenta';
 import About from './pages/About';
-//////// importaciones de las paginas de marcas
 import Nike from './pages/Nike';
 import Adidas from './pages/Adidas';
 import Puma from './pages/Puma';
@@ -17,15 +18,15 @@ import Asics from './pages/Asics';
 import Converse from './pages/Converse';
 import Hoka from './pages/Hoka';
 import ProducDetail from './pages/ProductDetail';
-//////////// fin de importaciones de las pantallas de marca
-//////importacion de las pantallas de categorias 
 import Running from './pages/Runnig';
-
+import Entrenamiento from './pages/Entrenamiento';
+import Terminos from './components/Terminos';
 import './App.css';
 
 function App() {
   const location = useLocation(); // Para detectar en qué página estamos
 
+  // Condiciones para las páginas que no deben mostrar el fondo
   const isMarcaPage = location.pathname.startsWith("/marcas/nike") ||
                       location.pathname.startsWith("/marcas/adidas") ||
                       location.pathname.startsWith("/marcas/puma") ||
@@ -37,21 +38,29 @@ function App() {
 
   const isLoginPage = location.pathname === "/login" ||
                       location.pathname === "/recuperar" ||
-                      location.pathname === "/crear-cuenta";
+                      location.pathname === "/crear-cuenta" ||
+                      location.pathname === "/carrito";
+
+  // Verificar si estamos en la página de carrito
+  const isCarritoPage = location.pathname === "/carrito";
 
   const hideFooter = isMarcaPage || isLoginPage;
+
+  // Lógica para evitar aplicar el fondo en el carrito
+  const hideBackground = isMarcaPage || isLoginPage || isCarritoPage;
 
   return (
     <div className="app-container">
       <Nav />
-      {/* Aquí ponemos fondo solo si no es marca */}
-      <div className={isMarcaPage ? "" : "background"} style={{ flex: 1 }}>
+      {/* Aquí no se aplica el fondo si estamos en la página de carrito */}
+      <div className={hideBackground ? "" : "background"} style={{ flex: 1 }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/marcas" element={<Marcas />} />
           <Route path="/login" element={<Login />} />
           <Route path="/recuperar" element={<Recuperar />} />
           <Route path="/crear-cuenta" element={<CrearCuenta />} />
+          <Route path="/carrito" element={<Carrito />} />
           <Route path="/aboutus" element={<About />} />
 
           {/* Rutas marcas */}
@@ -65,12 +74,15 @@ function App() {
           <Route path="/marcas/hoka" element={<Hoka />} />
           <Route path="/producto/:id" element={<ProducDetail />} />
 
-
-          {/* Rutas marcas */}
+          {/* Rutas categorías */}
           <Route path="/categorias/runinnyatletismo" element={<Running />} />
+          <Route path="/categorias/entrenamientoygym" element={<Entrenamiento />} />
+
+          <Route path="/ofertas" element={<Ofertas />} />
 
 
-
+          {/* Apartado para términos y condiciones */}
+          <Route path="/terminos" element={<Terminos />} />
         </Routes>
       </div>
 
