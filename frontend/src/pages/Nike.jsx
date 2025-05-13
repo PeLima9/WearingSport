@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // 👈 IMPORTANTE
 import './Nike.css'; // Archivo de estilos
+import productos from '../data/productos';
 
 const Nike = () => {
   const navigate = useNavigate(); // 👈 PARA NAVEGAR

@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import './Nike.css'; // Archivo de estilos
+import { useNavigate } from 'react-router-dom'; // 👈 IMPORTANTE
+import './Adidas.css'; // Archivo de estilos
 
 const Adidas = () => {
+  const navigate = useNavigate(); // 👈 PARA NAVEGAR
+
+
   const nikeShoes = [
     { id: 1, name: 'Nike Air Max', price: '$120', image: 'nike_air_max.jpg' },
     { id: 2, name: 'Nike Zoom', price: '$140', image: 'nike_zoom.jpg' },
@@ -44,6 +48,10 @@ const Adidas = () => {
     }
   };
 
+  const handleCardClick = (id) => {
+    navigate(`/producto/${id}`); // 👈 Al hacer click, llevamos a detalle
+  };
+
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = nikeShoes.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -58,7 +66,12 @@ const Adidas = () => {
 
       <div className="product-grid">
         {currentProducts.map((shoe) => (
-          <div key={shoe.id} className="product-card">
+          <div 
+            key={shoe.id} 
+            className="product-card"
+            onClick={() => handleCardClick(shoe.id)} // 👈 CLICK A LA CARD
+            style={{ cursor: 'pointer' }} // 👈 Hacer que el mouse cambie
+          >
             <img src={`/img/${shoe.image}`} alt={shoe.name} />
             <div className="product-info">
               <h3>{shoe.name}</h3>

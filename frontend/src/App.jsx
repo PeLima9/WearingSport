@@ -17,16 +17,15 @@ import UnderArmour from './pages/UnderArmour';
 import Asics from './pages/Asics';
 import Converse from './pages/Converse';
 import Hoka from './pages/Hoka';
-import ProducDetail from './pages/ProductDetail';
+import ProductDetail from './pages/ProductDetail'; // Asegúrate de que esté bien escrito
 import Running from './pages/Runnig';
 import Entrenamiento from './pages/Entrenamiento';
 import Terminos from './components/Terminos';
 import './App.css';
 
 function App() {
-  const location = useLocation(); // Para detectar en qué página estamos
+  const location = useLocation();
 
-  // Condiciones para las páginas que no deben mostrar el fondo
   const isMarcaPage = location.pathname.startsWith("/marcas/nike") ||
                       location.pathname.startsWith("/marcas/adidas") ||
                       location.pathname.startsWith("/marcas/puma") ||
@@ -41,18 +40,15 @@ function App() {
                       location.pathname === "/crear-cuenta" ||
                       location.pathname === "/carrito";
 
-  // Verificar si estamos en la página de carrito
   const isCarritoPage = location.pathname === "/carrito";
 
   const hideFooter = isMarcaPage || isLoginPage;
-
-  // Lógica para evitar aplicar el fondo en el carrito
   const hideBackground = isMarcaPage || isLoginPage || isCarritoPage;
 
   return (
     <div className="app-container">
       <Nav />
-      {/* Aquí no se aplica el fondo si estamos en la página de carrito */}
+
       <div className={hideBackground ? "" : "background"} style={{ flex: 1 }}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -72,21 +68,19 @@ function App() {
           <Route path="/marcas/asics" element={<Asics />} />
           <Route path="/marcas/converse" element={<Converse />} />
           <Route path="/marcas/hoka" element={<Hoka />} />
-          <Route path="/producto/:id" element={<ProducDetail />} />
+
+          {/* Vista detalle de producto */}
+          <Route path="/producto/:id" element={<ProductDetail />} />
 
           {/* Rutas categorías */}
           <Route path="/categorias/runinnyatletismo" element={<Running />} />
           <Route path="/categorias/entrenamientoygym" element={<Entrenamiento />} />
 
           <Route path="/ofertas" element={<Ofertas />} />
-
-
-          {/* Apartado para términos y condiciones */}
           <Route path="/terminos" element={<Terminos />} />
         </Routes>
       </div>
 
-      {/* Footer visible solo si no estamos en login o en marca */}
       {!hideFooter && <Footer />}
     </div>
   );

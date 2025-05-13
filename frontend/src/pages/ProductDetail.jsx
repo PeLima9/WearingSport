@@ -1,36 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import './ProductDetail.css'; // Si tienes un archivo CSS para los detalles del producto
+import productos from '../data/productos'; // ⬅️ Importas el array simulado
+import './ProductDetail.css';
 
 const ProductDetail = () => {
-  // Obtener el ID del producto desde la URL
   const { id } = useParams();
-
-  // Estado para almacenar los detalles del producto
   const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
 
-  // Efecto para obtener los datos del producto
   useEffect(() => {
-    // Simulando una llamada a la API para obtener los datos del producto
-    fetch(`/api/products/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setProduct(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error al cargar los detalles del producto:", error);
-        setLoading(false);
-      });
+    // Simular búsqueda del producto por ID
+    const productoEncontrado = productos.find((p) => p.id === Number(id));
+    setProduct(productoEncontrado);
   }, [id]);
 
-  // Si estamos cargando, mostramos un mensaje de carga
-  if (loading) {
-    return <div>Cargando...</div>;
-  }
-
-  // Si no se encuentra el producto, mostrar un mensaje de error
   if (!product) {
     return <div>Producto no encontrado</div>;
   }
@@ -51,7 +33,6 @@ const ProductDetail = () => {
         <p>{product.description}</p>
         <span className="price">${product.price}</span>
 
-        {/* Botones */}
         <div className="product-detail-buttons">
           <button className="add-to-cart">Agregar al carrito</button>
           <button className="buy-now">Comprar ahora</button>
