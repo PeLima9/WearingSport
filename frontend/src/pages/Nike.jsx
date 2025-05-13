@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // 👈 IMPORTANTE
+import { useNavigate } from 'react-router-dom'; // <-- IMPORTANTE
 import './Nike.css'; // Archivo de estilos
 import productos from '../data/productos';
 
 const Nike = () => {
-  const navigate = useNavigate(); // 👈 PARA NAVEGAR
+  const navigate = useNavigate(); // <-- PARA NAVEGAR
 
   const nikeShoes = [
-    { id: 1, name: 'Nike Air Max', price: '$120', image: 'nike_air_max.jpg' },
+    { id: 1, name: 'Nike Air Max', price: '$120', image: 'nike_air_max.jpg', descripcion: 'Zapatillas deportivas cómodas con amortiguación Air Max.' },
     { id: 2, name: 'Nike Zoom', price: '$140', image: 'nike_zoom.jpg' },
     { id: 3, name: 'Nike Vapor', price: '$160', image: 'nike_vapor.jpg' },
     { id: 4, name: 'Nike Pegasus', price: '$130', image: 'nike_pegasus.jpg' },
@@ -49,7 +49,7 @@ const Nike = () => {
   };
 
   const handleCardClick = (id) => {
-    navigate(`/producto/${id}`); // 👈 Al hacer click, llevamos a detalle
+    navigate(`/producto/${id}`); // <-- Al hacer click, llevamos a detalle
   };
 
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -69,8 +69,8 @@ const Nike = () => {
           <div 
             key={shoe.id} 
             className="product-card"
-            onClick={() => handleCardClick(shoe.id)} // 👈 CLICK A LA CARD
-            style={{ cursor: 'pointer' }} // 👈 Hacer que el mouse cambie
+            onClick={() => handleCardClick(shoe.id)} // <-- CLICK A LA CARD
+            style={{ cursor: 'pointer' }} // <-- Hacer que el mouse cambie
           >
             <img src={`/img/${shoe.image}`} alt={shoe.name} />
             <div className="product-info">

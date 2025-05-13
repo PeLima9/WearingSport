@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import productos from '../data/productos'; // ⬅️ Importas el array simulado
+import productos from '../data/productos'; // <-- Importas el array simulado
 import './ProductDetail.css';
 
 const ProductDetail = () => {
@@ -21,22 +21,22 @@ const ProductDetail = () => {
     <div className="product-detail">
       <div className="product-detail-images">
         <div className="product-detail-image-left">
-          <img src={product.image1} alt={product.name} />
+        <img src={`/img/${product.image}`} alt={product.name} />
         </div>
         <div className="product-detail-image-right">
-          <img src={product.image2} alt={product.name} />
+        <img src={`/img/${product.image}`} alt={product.name} />
         </div>
       </div>
 
       <div className="product-detail-info">
         <h1>{product.name}</h1>
-        <p>{product.description}</p>
-        <span className="price">${product.price}</span>
+        <p>{product.descripcion}</p>
+        <span className="price">{product.price}</span>
 
         <div className="product-detail-buttons">
           <button className="add-to-cart">Agregar al carrito</button>
           <button className="buy-now">Comprar ahora</button>
-          <button className="view-more">Ver más productos</button>
+          <a  href="/marcas/nike"><button  className="view-more" >Ver más productos</button></a>
         </div>
       </div>
     </div>
