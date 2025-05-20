@@ -4,6 +4,8 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import {config} from "../config.js";
 
+const registerEmpController = {};
+
 //Insert - Post
 registerEmpController.registerEmployee = async (req, res) => {
     const {name, email, password} = req.body;
@@ -22,7 +24,7 @@ registerEmpController.registerEmployee = async (req, res) => {
         const newEmployee = new Employee({
             name,
             email,
-            password
+            password: passwordHash
         });
         await newEmployee.save()
 

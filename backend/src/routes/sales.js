@@ -5,12 +5,12 @@ import salesController from "../controllers/salesController.js"
 const router = express.Router();
 
 //Select - Insert
-router.route()
+router.route("/")
     .get(salesController.getSales)
     .post(salesController.insertSales);
 
 //Delete - Update
-router.route()
+router.route("/")
     .put(salesController.updateSales)
     .delete(salesController.deleteSales);
 
