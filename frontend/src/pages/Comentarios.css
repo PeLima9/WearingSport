@@ -1,0 +1,91 @@
+.carousel-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #21538E;
+  }
+  
+  .carousel-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 20px;
+  }
+  
+  .comment-card {
+    background-color: #b9b0b0;
+    padding: 25px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+  }
+  
+  .profile-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .stars {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  
+  .comment-text {
+    font-style: italic;
+    margin-bottom: 15px;
+  }
+  
+  .like-section button {
+    background: none;
+    border: none;
+    color: #007BFF;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .nav-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    padding: 10px;
+    position: relative;
+  }
+  
+  .nav-button.left {
+    left: -10px;
+  }
+  
+  .nav-button.right {
+    right: -10px;
+  }
+  
+  .more-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #E3B505;
+    color: rgb(14, 7, 7);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .more-button:hover {
+    background-color: #0056b3;
+  }
+  

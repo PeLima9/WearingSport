@@ -1,0 +1,58 @@
+/* Estilo principal para la pantalla de ofertas */
+.ofertas-container {
+    display: flex;
+    justify-content: flex-end; /* Esto asegura que la imagen esté pegada a la derecha */
+    align-items: center;
+    min-height: 100vh;  /* Asegura que ocupe toda la pantalla */
+    background-color: #f0f0f0;
+    padding: 20px;
+    overflow: hidden; /* Evita que el contenido se salga del contenedor */
+  }
+  
+  .image-container {
+    position: relative;
+    width: 60%;  /* La imagen ocupará el 60% de la pantalla desde la derecha */
+  }
+  
+  .ofertas-image {
+    width: 100%;  /* La imagen ocupa todo el contenedor */
+    height: 100%;  /* Hace que la imagen ocupe toda la altura del contenedor */
+    object-fit: cover;  /* La imagen cubre toda el área del contenedor sin deformarse */
+  }
+  
+  .offers-box {
+    position: absolute;
+    top: 0;  /* Coloca el recuadro al principio de la imagen */
+    left: 0; /* Alinea el recuadro al borde izquierdo de la imagen */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+    color: white;
+    padding: 250px 500px;
+    border-radius: 10px;
+    width: 100%;  /* El recuadro cubre el 100% del ancho de la imagen */
+    height: 100%;  /* El recuadro cubre el 100% de la altura de la imagen */
+    text-align: center;
+    box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+  }
+  
+  .text-above-button h2 {
+    margin-bottom: 20px; /* Espaciado entre el texto y el botón */
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .ofertas-button {
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ofertas-button:hover {
+    background-color: #e06c3c; /* Color al pasar el cursor */
+  }
+  

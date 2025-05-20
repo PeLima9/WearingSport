@@ -23,7 +23,7 @@ const Footer = () => {
         {/* Sección central - Enlaces */}
         <div className="footer-center">
           <div className="footer-links">
-            <a href="#">Comentarios</a>
+            <a href="/comentarios">Comentarios</a>
           </div>
           <div className="footer-links">
             <a href="/terminos">Términos y condiciones</a>

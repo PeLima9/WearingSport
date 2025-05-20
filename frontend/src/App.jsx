@@ -6,6 +6,7 @@ import Marcas from './pages/Marcas';
 import Login from './pages/Login';
 import Carrito from './pages/Carrito';
 import Ofertas from './pages/Ofertas';
+import Ofertas1 from './pages/Ofertas1';
 import Recuperar from './components/Recuperar';
 import CrearCuenta from './components/CrearCuenta';
 import About from './pages/About';
@@ -21,6 +22,8 @@ import ProductDetail from './pages/ProductDetail'; // Asegúrate de que esté bi
 import Running from './pages/Runnig';
 import Entrenamiento from './pages/Entrenamiento';
 import Terminos from './components/Terminos';
+import Comentarios from './pages/Comentarios';
+import NuevoComentario from './pages/NuevoComentario';
 import './App.css';
 
 function App() {
@@ -41,9 +44,16 @@ function App() {
                       location.pathname === "/carrito";
 
   const isCarritoPage = location.pathname === "/carrito";
+ 
+  const isComentariosPage = location.pathname === "/comentarios";
 
-  const hideFooter = isMarcaPage || isLoginPage;
-  const hideBackground = isMarcaPage || isLoginPage || isCarritoPage;
+  const isNuevoComentario = location.pathname === "/nuevocomentario";
+
+  const isOfertas1 = location.pathname === "/ofertas1";
+
+
+  const hideFooter = isMarcaPage || isLoginPage ;
+  const hideBackground = isMarcaPage || isLoginPage || isCarritoPage || isComentariosPage || isNuevoComentario || isOfertas1;
 
   return (
     <div className="app-container">
@@ -77,7 +87,10 @@ function App() {
           <Route path="/categorias/entrenamientoygym" element={<Entrenamiento />} />
 
           <Route path="/ofertas" element={<Ofertas />} />
+          <Route path='/ofertas1' element={<Ofertas1 />} />
           <Route path="/terminos" element={<Terminos />} />
+          <Route path='comentarios' element={<Comentarios />} />
+          <Route path='nuevocomentario' element={<NuevoComentario />} />
         </Routes>
       </div>
 

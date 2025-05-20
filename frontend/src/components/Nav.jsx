@@ -72,7 +72,7 @@ const Nav = () => {
             )}
           </li>
 
-          <li><Link to="/ofertas">Ofertas</Link></li>
+          <li><Link to="/ofertas1">Ofertas</Link></li>
           <li><Link to="/aboutus">Sobre Nosotros</Link></li>
           </ul>
       )}
