@@ -1,5 +1,5 @@
 const productsController = {};
-import productsModel from "../models/Products";
+import productsModel from "../models/Products.js";
 
 //Select / Get
 productsController.getProducts = async (req, res) => {

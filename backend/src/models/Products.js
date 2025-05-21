@@ -16,7 +16,7 @@ import { Schema, model } from "mongoose";
 const producsSchema = new Schema({
     productName: {
         type: String,
-        require: True
+        require: true
     },
     description: {
         type: String,
