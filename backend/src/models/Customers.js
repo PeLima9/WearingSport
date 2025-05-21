@@ -33,6 +33,11 @@ const customersSchema = new Schema({
         type: String,
         require: true,
         maxLength: 8
+    },
+
+    isVerified: {
+        type: Boolean,
+        require: true
     }
 }, {
     timestamps: true,

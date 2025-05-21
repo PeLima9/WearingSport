@@ -10,12 +10,16 @@ import salesRoutes from "./src/routes/sales.js";
 import registerEmpRoutes from "./src/routes/registerEmployees.js";
 import registerCliRoutes from "./src/routes/registerClients.js";
 import loginRoutes from "./src/routes/login.js";
+import cookieParser from "cookie-parser";
 
 //Crear constante para la libreria
 const app = express();
 
 //Usar Middleware para .json
-app.use(express.json())
+app.use(express.json());
+
+//Cookies
+app.use(cookieParser());
 
 //Definir la ruta
 app.use("/api/Brands", brandsRoutes);
