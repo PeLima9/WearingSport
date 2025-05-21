@@ -65,9 +65,91 @@ export const productos = [
       price: '$ 120.00',
       image: 'nike_sb_dunk.jpg',
       descripcion: 'Diseño moderno con confort excepcional.',
-    }
+    },
+    {
+      id: 9,
+      marca: 'Nike',
+      name: 'Nike Cortez',
+      price: '$ 120.00',
+      image: 'nike_cortez.jpg',
+      descripcion: 'Diseño moderno con confort excepcional.',
+    },
+    {
+      id: 10,
+      marca: 'Nike',
+      name: 'Nike Blazer',
+      price: '$ 120.00',
+      image: 'nike_blazer.jpg',
+      descripcion: 'Diseño moderno con confort excepcional.',
+    },
+    {
+      id: 11,
+      marca: 'Nike',
+      name: 'Nike Air Force 1',
+      price: '$ 120.00',
+      image: 'nike_air_force1.jpg',
+      descripcion: 'Diseño moderno con confort excepcional.',
+    },
+    {
+      id: 12,
+      marca: 'Nike',
+      name: 'Nike Revolution',
+      price: '$ 120.00',
+      image: 'nike_revolution.jpg',
+      descripcion: 'Diseño moderno con confort excepcional.',
+    },
+    {
+      id: 13,
+      marca: 'Nike',
+      name: 'Nike Air Max 90',
+      price: '$ 120.00',
+      image: 'nike_air_max_90.jpg',
+      descripcion: 'Diseño moderno con confort excepcional.',
+    },
+    {
+      id: 14,
+      marca: 'Nike',
+      name: 'Nike Free TR',
+      price: '$ 120.00',
+      image: 'nike_free_tr.jpg',
+      descripcion: 'Diseño moderno con confort excepcional.',
+    },
+    {
+      id: 15,
+      marca: 'Nike',
+      name: 'Nike Air Zoom Fly',
+      price: '$ 180.00',
+      image: 'nike_air_zoom_fly.jpg',
+      descripcion: 'Diseño moderno con confort excepcional.',
+    },
+    {
+      id: 16,
+      marca: 'Nike',
+      name: 'Nike Cortez Classic',
+      price: '$ 120.00',
+      image: 'nike_cortez_classic.jpg',
+      descripcion: 'Diseño moderno con confort excepcional.',
+    },
+    {
+      id: 17,
+      marca: 'Nike',
+      name: 'Nike Air Zoom Structure',
+      price: '$ 140.00',
+      image: 'nike_air_zoom_structure.jpg',
+      descripcion: 'Diseño moderno con confort excepcional.',
+    },
+    {
+      id: 18,
+      marca: 'Nike',
+      name: 'Nike React Element',
+      price: '$ 150.00',
+      image: 'nike_react_element.jpg',
+      descripcion: 'Diseño moderno con confort excepcional ta chivo.',
+    },
+    
+
     // Agrega más productos según tus marcas
   ];
-
+ 
   
   export default productos;

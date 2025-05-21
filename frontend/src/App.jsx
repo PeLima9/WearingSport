@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { CartProvider } from './context/CartContext'; // Asegúrate de importar bien
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -56,9 +57,10 @@ function App() {
   const hideBackground = isMarcaPage || isLoginPage || isCarritoPage || isComentariosPage || isNuevoComentario || isOfertas1;
 
   return (
+
     <div className="app-container">
       <Nav />
-
+      <CartProvider>
       <div className={hideBackground ? "" : "background"} style={{ flex: 1 }}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -93,6 +95,8 @@ function App() {
           <Route path='nuevocomentario' element={<NuevoComentario />} />
         </Routes>
       </div>
+      </CartProvider>
+
 
       {!hideFooter && <Footer />}
     </div>

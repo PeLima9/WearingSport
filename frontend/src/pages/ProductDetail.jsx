@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import productos from '../data/productos'; // <-- Importas el array simulado
+import { useNavigate } from 'react-router-dom';
+import { useCart } from '../context/CartContext'; // asegúrate de importar bien
+
 import './ProductDetail.css';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+
+  const navigate = useNavigate();
+const { addToCart } = useCart();
+
+const handleAddToCart = () => {
+  addToCart(product); // Agregar al carrito
+  navigate('/carrito'); // Redirigir al carrito
+};
+
 
   useEffect(() => {
     // Simular búsqueda del producto por ID
@@ -34,8 +46,9 @@ const ProductDetail = () => {
         <span className="price">{product.price}</span>
 
         <div className="product-detail-buttons">
-          <button className="add-to-cart">Agregar al carrito</button>
-          <button className="buy-now">Comprar ahora</button>
+        <button className="add-to-cart" onClick={handleAddToCart}>
+  Agregar al carrito
+</button>          <button className="buy-now">Comprar ahora</button>
           <a  href="/marcas/nike"><button  className="view-more" >Ver más productos</button></a>
         </div>
       </div>
