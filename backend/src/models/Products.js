@@ -7,6 +7,7 @@
     stock
     categories
     brandId
+    imageUrl
 */
 
 //Mongose 
@@ -37,10 +38,14 @@ const producsSchema = new Schema({
         type: String,
         require: true,
     },
-    idBrands: {
+    brandId: {
         type: Schema.Types.ObjectId,
         ref: "Brands",
         require: true
+    },
+    imageUrl: {
+        type: String,  // Guardamos la URL de la imagen
+        required: false
     },
 },
 {
