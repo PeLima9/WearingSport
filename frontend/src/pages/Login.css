@@ -48,6 +48,24 @@
   .forgot-password {
     margin: 10px 0;
   }
+  .password-group {
+  position: relative;
+}
+
+.password-group input {
+  width: 100%;
+  padding-right: 40px; /* Espacio para el ojito */
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+}
+
   
   .forgot-password a {
     color: #fff;

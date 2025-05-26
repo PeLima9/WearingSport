@@ -1,41 +1,55 @@
-//Importar librerías
+// Importar librerías principales
 import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+
+// Importar rutas personalizadas
 import brandsRoutes from "./src/routes/brands.js";
 import customersRoutes from "./src/routes/customers.js";
 import employeesRoutes from "./src/routes/employees.js";
-//[Agregar import de Orders]
 import productsRoutes from "./src/routes/products.js";
 import reviewsRoutes from "./src/routes/reviews.js";
 import salesRoutes from "./src/routes/sales.js";
 import registerEmpRoutes from "./src/routes/registerEmployees.js";
 import registerCliRoutes from "./src/routes/registerClients.js";
 import loginRoutes from "./src/routes/login.js";
-import cookieParser from "cookie-parser";
 
-//Crear constante para la libreria
+// Crear instancia de la app
 const app = express();
 
-//Usar Middleware para .json
+// Middleware para permitir peticiones desde el frontend (ej. React en localhost:4000)
+
+const allowedOrigins = ["http://localhost:5173"]; // Aquí pones el URL de tu frontend real
+
+app.use(cors({
+  origin: function(origin, callback){
+    // Permitir peticiones sin origen (como Postman) o que estén en la lista
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      const msg = `La política CORS no permite acceso desde el origen: ${origin}`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true
+}));
+
+// Middleware para parsear JSON
 app.use(express.json());
 
-//Cookies
+// Middleware para manejar cookies
 app.use(cookieParser());
 
-//Definir la ruta
+// Definición de rutas
 app.use("/api/Brands", brandsRoutes);
 app.use("/api/Customers", customersRoutes);
 app.use("/api/Employees", employeesRoutes);
-//[Agregar ruta de Orders]
 app.use("/api/Products", productsRoutes);
 app.use("/api/Reviews", reviewsRoutes);
 app.use("/api/Sales", salesRoutes);
-
-//Register
 app.use("/api/RegisterEmployees", registerEmpRoutes);
 app.use("/api/RegisterClients", registerCliRoutes);
-
-//Login
 app.use("/api/Login", loginRoutes);
 
-//Hacer la constante global
+// Exportar la app
 export default app;

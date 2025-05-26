@@ -1,0 +1,23 @@
+/* Estilos adicionales para mensajes de error y éxito */
+
+/* Mensaje de error */
+.error-message {
+    color: #ff4d4d;
+    background-color: #fff0f0;
+    border: 1px solid #ffb3b3;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Mensaje de éxito */
+.success-message {
+    color: #d4edda;
+    background-color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-size: 14px;
+}

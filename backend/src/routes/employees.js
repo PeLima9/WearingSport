@@ -10,6 +10,9 @@ router.route("/")
     .post(employeesController.insertEmployee)
 
 //Delete - Update
+router.route("/:id")
+
+    .get(employeesController.getEmployeeById) 
     .delete(employeesController.deleteEmployee)
     .put(employeesController.updateEmployee)
 

@@ -26,7 +26,12 @@ const employeesSchema = new Schema({
         type: String,
         require: true,
         minLength: 6
-    }
+    },
+      rol: { 
+    type: String,
+    enum: ["admin", "employee", "cliente"], 
+    default: "cliente"
+  }
 }, {
     timestamps: true,
     strict: false

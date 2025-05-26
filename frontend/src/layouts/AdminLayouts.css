@@ -1,0 +1,21 @@
+.admin-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url('/img/fondo-admin.png');
+  background-size: cover;
+  background-position: center;
+}
+
+body.no-fondo {
+  background-image: none !important;
+  background-color: #f5f5f5 !important; /* o blanco, como prefieras */
+}
+
+.admin-content {
+  flex: 1;
+  padding: 20px;
+  background-color: transparent;
+}
+
+

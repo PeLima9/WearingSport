@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { CartProvider } from './context/CartContext'; // Asegúrate de importar bien
+import { UserProvider } from './context/UserContext';
+import { AuthProvider } from "./context/AuthContext";
+
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -9,6 +12,7 @@ import Carrito from './pages/Carrito';
 import Ofertas from './pages/Ofertas';
 import Ofertas1 from './pages/Ofertas1';
 import Recuperar from './components/Recuperar';
+import NuevaContrasena from './components/NuevaContrasena';
 import CrearCuenta from './components/CrearCuenta';
 import About from './pages/About';
 import Nike from './pages/Nike';
@@ -25,6 +29,16 @@ import Entrenamiento from './pages/Entrenamiento';
 import Terminos from './components/Terminos';
 import Comentarios from './pages/Comentarios';
 import NuevoComentario from './pages/NuevoComentario';
+
+
+///////////////importaciones de Admin
+import NavbarAdmin from './components/Admin/NavbarAdmin';
+import InicioAdmin from './pages/Admin/InicioAdmin';
+import AdminLayout from './layouts/AdminLayouts';
+import AgregarUsuario from './pages/Admin/AgregarUsuario';
+import AgregarProducto from './pages/Admin/AgregarProducto';
+import ListaUsuario from './pages/Admin/ListaUsuarios';
+import EditarUsuario from './pages/Admin/EditarUsuario';
 import './App.css';
 
 function App() {
@@ -42,6 +56,7 @@ function App() {
   const isLoginPage = location.pathname === "/login" ||
                       location.pathname === "/recuperar" ||
                       location.pathname === "/crear-cuenta" ||
+                      location.pathname === "/nuevacontrasena" ||
                       location.pathname === "/carrito";
 
   const isCarritoPage = location.pathname === "/carrito";
@@ -52,6 +67,9 @@ function App() {
 
   const isOfertas1 = location.pathname === "/ofertas1";
 
+  const isAdminRoute = location.pathname.startsWith("/admin");
+
+
 
   const hideFooter = isMarcaPage || isLoginPage ;
   const hideBackground = isMarcaPage || isLoginPage || isCarritoPage || isComentariosPage || isNuevoComentario || isOfertas1;
@@ -59,7 +77,7 @@ function App() {
   return (
 
     <div className="app-container">
-      <Nav />
+{!isAdminRoute && <Nav />}
       <CartProvider>
       <div className={hideBackground ? "" : "background"} style={{ flex: 1 }}>
         <Routes>
@@ -67,6 +85,7 @@ function App() {
           <Route path="/marcas" element={<Marcas />} />
           <Route path="/login" element={<Login />} />
           <Route path="/recuperar" element={<Recuperar />} />
+          <Route path='/nuevacontrasena' element={<NuevaContrasena />} />
           <Route path="/crear-cuenta" element={<CrearCuenta />} />
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/aboutus" element={<About />} />
@@ -93,12 +112,25 @@ function App() {
           <Route path="/terminos" element={<Terminos />} />
           <Route path='comentarios' element={<Comentarios />} />
           <Route path='nuevocomentario' element={<NuevoComentario />} />
+
+{/* 🔐 Rutas de administrador */}
+         <Route path="/admin" element={<AdminLayout />}>
+         <Route index element={<InicioAdmin />} />
+         <Route path="agregarusuario" element={<AgregarUsuario />} />
+         <Route path='agregarproducto' element={<AgregarProducto />} />
+         <Route path='listausuarios' element={<ListaUsuario />} />
+        </Route>
+
+
+
+
+
         </Routes>
       </div>
       </CartProvider>
 
 
-      {!hideFooter && <Footer />}
+        {!isAdminRoute && !hideFooter && <Footer />}
     </div>
   );
 }
@@ -107,8 +139,14 @@ import { BrowserRouter } from 'react-router-dom';
 
 export default function WrappedApp() {
   return (
-    <BrowserRouter>
-      <App />
+   <BrowserRouter>
+      <AuthProvider>
+        <UserProvider>
+          <CartProvider>
+            <App />
+          </CartProvider>
+        </UserProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
