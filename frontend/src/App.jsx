@@ -38,7 +38,7 @@ import AdminLayout from './layouts/AdminLayouts';
 import AgregarUsuario from './pages/Admin/AgregarUsuario';
 import AgregarProducto from './pages/Admin/AgregarProducto';
 import ListaUsuario from './pages/Admin/ListaUsuarios';
-import EditarUsuario from './pages/Admin/EditarUsuario';
+import CrearMarca from './pages/Admin/CrearMarca';
 import './App.css';
 
 function App() {
@@ -119,6 +119,7 @@ function App() {
          <Route path="agregarusuario" element={<AgregarUsuario />} />
          <Route path='agregarproducto' element={<AgregarProducto />} />
          <Route path='listausuarios' element={<ListaUsuario />} />
+         <Route path='crearmarca' element={<CrearMarca />} />
         </Route>
 
 

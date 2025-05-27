@@ -10,6 +10,7 @@ const NavbarAdmin = () => {
         <li><Link to="/admin/agregarusuario">AgregarEmpleado</Link></li>
         <li><Link to="/admin/agregarproducto">Productos</Link></li>
         <li><Link to="/admin/ofertas">Ofertas</Link></li>
+        <li><Link to="/admin/crearmarca">CrearMarca</Link></li>
         <li><Link to="/login">Cerrar sesión</Link></li>
       </ul>
     </nav>

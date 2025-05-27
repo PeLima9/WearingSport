@@ -22,7 +22,7 @@ const producsSchema = new Schema({
     description: {
         type: String,
         require: false,
-        maxLenght: 500
+        maxLength: 500
     },
     price: {
         type: Number,

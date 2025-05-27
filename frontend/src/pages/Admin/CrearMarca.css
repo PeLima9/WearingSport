@@ -1,0 +1,43 @@
+.crear-marca-container {
+  padding: 2rem;
+  max-width: 600px;
+  margin: 3rem auto;
+  background: linear-gradient(135deg, #f0c8c8, #1e48cf2d);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-crear-marca {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-crear-marca label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-crear-marca input,
+.form-crear-marca textarea {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form-crear-marca button {
+  padding: 0.6rem;
+  background-color: #ff6b00;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-crear-marca button:hover {
+  background-color: #e25a00;
+}

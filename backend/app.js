@@ -34,6 +34,11 @@ app.use(cors({
   credentials: true
 }));
 
+
+// Sirve archivos estáticos (por ejemplo, imágenes subidas temporalmente por Multer)
+app.use('/uploads', express.static('uploads'));
+
+
 // Middleware para parsear JSON
 app.use(express.json());
 

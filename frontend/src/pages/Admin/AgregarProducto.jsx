@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AgregarProducto.css';
 
 const AgregarProducto = () => {
@@ -8,9 +8,28 @@ const AgregarProducto = () => {
     description: '',
     image: null,
     categories: '',
+    brandId: '',
+    stock: '',
   });
+
+  const [marcas, setMarcas] = useState([]); // ✅ marcas desde la API
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  // ✅ Cargar marcas desde el backend
+  useEffect(() => {
+    const fetchMarcas = async () => {
+      try {
+        const res = await fetch('http://localhost:4000/api/Brands');
+        const data = await res.json();
+        setMarcas(data);
+      } catch (err) {
+        console.error('Error al obtener marcas:', err);
+      }
+    };
+
+    fetchMarcas();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,8 +49,14 @@ const AgregarProducto = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validación simple
-    if (!formData.productName || !formData.price || formData.price <= 0 || !formData.categories || !formData.image) {
+    if (
+      !formData.productName ||
+      !formData.price || formData.price <= 0 ||
+      !formData.categories ||
+      !formData.brandId ||
+      !formData.image ||
+      !formData.stock
+    ) {
       setError('Todos los campos son obligatorios y el precio debe ser mayor a 0.');
       return;
     }
@@ -58,6 +83,8 @@ const AgregarProducto = () => {
           description: '',
           image: null,
           categories: '',
+          brand: '',
+          stock: '',
         });
       } else {
         const result = await response.json();
@@ -76,7 +103,7 @@ const AgregarProducto = () => {
       <h2>Agregar Nuevo Producto</h2>
       <form className="form-agregar-producto" onSubmit={handleSubmit}>
         {error && <p className="error">{error}</p>}
-        
+
         <label>
           Nombre del producto:
           <input
@@ -88,7 +115,7 @@ const AgregarProducto = () => {
             required
           />
         </label>
-        
+
         <label>
           Precio:
           <input
@@ -101,7 +128,7 @@ const AgregarProducto = () => {
             min="0.01"
           />
         </label>
-        
+
         <label>
           Descripción:
           <textarea
@@ -112,7 +139,7 @@ const AgregarProducto = () => {
             maxLength="500"
           />
         </label>
-        
+
         <label>
           Imagen:
           <input
@@ -122,7 +149,24 @@ const AgregarProducto = () => {
             required
           />
         </label>
-        
+
+        <label>
+          Marca:
+          <select
+            name="brandId"
+            value={formData.brandId}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Selecciona una marca</option>
+            {marcas.map((marca) => (
+              <option key={marca._id} value={marca._id}>
+                {marca.brandName}
+              </option>
+            ))}
+          </select>
+        </label>
+
         <label>
           Categoría:
           <select
@@ -137,14 +181,27 @@ const AgregarProducto = () => {
             <option value="moda">Moda</option>
           </select>
         </label>
-        
+
+        <label>
+          Stock disponible:
+          <input
+            type="number"
+            name="stock"
+            placeholder="Ej. 10"
+            value={formData.stock}
+            onChange={handleChange}
+            required
+            min="0"
+          />
+        </label>
+
         {formData.image && (
           <div>
             <h4>Imagen seleccionada:</h4>
             <img src={URL.createObjectURL(formData.image)} alt="Previsualización" width="100" />
           </div>
         )}
-        
+
         <button type="submit" disabled={loading}>
           {loading ? 'Agregando...' : 'Agregar Producto'}
         </button>
