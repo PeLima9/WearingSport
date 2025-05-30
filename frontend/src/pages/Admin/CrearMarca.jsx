@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./CrearMarca.css";
 
 const CrearMarca = () => {
+  const navigate = useNavigate();
+
+
   const [brandName, setBrandName] = useState("");
   const [description, setDescription] = useState("");
   const [country, setCountry] = useState("");
@@ -71,6 +76,14 @@ const CrearMarca = () => {
 
         <button type="submit">Crear Marca</button>
       </form>
+
+      <button
+        className="btn-ver-usuarios"
+        onClick={() => navigate("/admin/listamarcas")}
+      >
+        Ver Marcas
+      </button>
+
 
       {mensaje && <p>{mensaje}</p>}
     </div>

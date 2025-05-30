@@ -39,6 +39,7 @@ import AgregarUsuario from './pages/Admin/AgregarUsuario';
 import AgregarProducto from './pages/Admin/AgregarProducto';
 import ListaUsuario from './pages/Admin/ListaUsuarios';
 import CrearMarca from './pages/Admin/CrearMarca';
+import ListaMarcas from './pages/Admin/ListaMarcas';
 import './App.css';
 
 function App() {
@@ -120,6 +121,7 @@ function App() {
          <Route path='agregarproducto' element={<AgregarProducto />} />
          <Route path='listausuarios' element={<ListaUsuario />} />
          <Route path='crearmarca' element={<CrearMarca />} />
+         <Route path='listamarcas' element={<ListaMarcas />} />
         </Route>
 
 

@@ -1,0 +1,190 @@
+.visualizar-marcas-container {
+    max-width: 800px;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+    padding: 0 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #610345;
+  }
+  
+  .mensaje {
+    text-align: center;
+    font-weight: 600;
+    color: #4caf50;
+    margin-bottom: 15px;
+  }
+  
+  .brands-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .brands-table th,
+  .brands-table td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  .brands-table th {
+    background-color: #26263a;
+    color: white;
+  }
+  
+  .brands-table tr:nth-child(even) {
+    background-color: #f9f9f915;
+  }
+  
+  .brands-table tr:hover {
+    background-color: #be8126;
+  }
+  
+  .no-data {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+  }
+  
+  .btn-edit,
+  .btn-delete {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-edit {
+    background-color: #2196f3;
+    color: white;
+  }
+  
+  .btn-edit:hover {
+    background-color: #0b7dda;
+  }
+  
+  .btn-delete {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .btn-delete:hover {
+    background-color: #c62828;
+  }
+  
+  /* Modal Styles */
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  
+  .modal-content {
+    background: white;
+    border-radius: 10px;
+    padding: 30px 25px;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  
+  .modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #610345;
+    text-align: center;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .modal-content input,
+  .modal-content textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+  }
+  
+  .modal-content input:focus,
+  .modal-content textarea:focus {
+    border-color: #610345;
+    outline: none;
+  }
+
+  .visualizar-marcas-container {
+    max-width: 800px;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+    padding: 20px; /* un poco más de padding para que se note */
+    
+    background: linear-gradient(135deg, #d1305386, #93c5fd); /* color base con opacidad para efecto desvanecido */
+    border: 1.5px solid rgba(221, 207, 217, 0.3); /* borde suave */
+    border-radius: 12px; /* bordes redondeados */
+    box-shadow: 0 8px 20px rgba(241, 234, 239, 0.15); /* sombra suave para darle profundidad */
+  }
+  
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .btn-save {
+    background-color: #610345;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    width: 48%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-save:hover {
+    background-color: #4a0235;
+  }
+  
+  .btn-cancel {
+    background-color: #bbb;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    width: 48%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-cancel:hover {
+    background-color: #999;
+  }
+  

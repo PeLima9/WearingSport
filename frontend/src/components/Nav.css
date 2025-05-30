@@ -3,9 +3,11 @@
   display: flex;
   justify-content: space-between; /* Para que los íconos estén al final */
   align-items: center;
-  background-color: #610345; /* Color de fondo */
+  background: linear-gradient(135deg, #6B3A5B, #610345);; /* Color de fondo */
   padding: 20px 40px;
   color: white;
+  
+
 }
 
 .logo h1 {

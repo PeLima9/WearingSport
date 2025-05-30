@@ -169,6 +169,8 @@ const ListaUsuario = () => {
   <option value="">-- Selecciona un rol --</option>
   <option value="cliente">Cliente</option>
   <option value="admin">Admin</option>
+  <option value="empleado">Empleado</option>
+
 </select>
 <br></br>
 <br></br>
