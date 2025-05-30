@@ -14,7 +14,7 @@ const productsController = {};
 // Select / Get
 productsController.getProducts = async (req, res) => {
     try {
-        const products = await productsModel.find().populate('brandId');
+        const products = await productsModel.find().populate('brandId', 'brandName');
         res.json(products);
     } catch (error) {
         res.status(500).json({ message: "Error retrieving products", error });

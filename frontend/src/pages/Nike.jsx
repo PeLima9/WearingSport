@@ -14,7 +14,7 @@ const Nike = () => {
       .then(res => res.json())
       .then(data => {
         // Filtra productos de la marca Nike
-        const nikeProducts = data.filter(prod => prod.brand === 'Nike');
+        const nikeProducts = data.filter(prod => prod.brandId?.brandName === 'Nike');
         setProductos(nikeProducts);
       })
       .catch(err => console.error('Error al cargar productos:', err));
