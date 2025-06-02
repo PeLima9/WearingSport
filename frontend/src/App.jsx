@@ -40,6 +40,7 @@ import AgregarProducto from './pages/Admin/AgregarProducto';
 import ListaUsuario from './pages/Admin/ListaUsuarios';
 import CrearMarca from './pages/Admin/CrearMarca';
 import ListaMarcas from './pages/Admin/ListaMarcas';
+import BrandProducts from './components/BrandProducts';
 import './App.css';
 
 function App() {
@@ -122,6 +123,8 @@ function App() {
          <Route path='listausuarios' element={<ListaUsuario />} />
          <Route path='crearmarca' element={<CrearMarca />} />
          <Route path='listamarcas' element={<ListaMarcas />} />
+        <Route path='brandproducts' element={<BrandProducts />} />
+
         </Route>
 
 

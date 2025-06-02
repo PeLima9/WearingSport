@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Running.css';
+import './BrandProducts.css';
 
-const Nike = () => {
+const BrandProducts = ({ brandName }) => {
   const navigate = useNavigate();
   const [productos, setProductos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 8;
 
   useEffect(() => {
-    // Llama al backend
-    fetch('http://localhost:4000/api/Products') // Ajusta la URL si es diferente
+    fetch('http://localhost:4000/api/Products')
       .then(res => res.json())
       .then(data => {
-        // Filtra productos de la marca Nike
-        const nikeProducts = data.filter(prod => prod.brandId?.brandName === 'Nike');
-        setProductos(nikeProducts);
+        const filtered = data.filter(prod => prod.brandId?.brandName === brandName);
+        setProductos(filtered);
       })
       .catch(err => console.error('Error al cargar productos:', err));
-  }, []);
+  }, [brandName]);
 
   const handleCardClick = (id) => {
     navigate(`/producto/${id}`);
@@ -42,9 +40,9 @@ const Nike = () => {
   const totalPages = Math.ceil(productos.length / productsPerPage);
 
   return (
-    <div className="nike-page">
-      <div className="brand-box">
-        <h1>Nike</h1>
+    <div className="brand-page">
+      <div className="brand-header h1">
+        <h1>{brandName}</h1> {/* Aquí se muestra el nombre dinámico */}
       </div>
 
       <div className="product-grid">
@@ -58,7 +56,7 @@ const Nike = () => {
             <img src={shoe.imageUrl} alt={shoe.productName} />
             <div className="product-info">
               <h3>{shoe.productName}</h3>
-              <p>{shoe.price}</p>
+              <p>${shoe.price}</p>
             </div>
           </div>
         ))}
@@ -83,4 +81,4 @@ const Nike = () => {
   );
 };
 
-export default Nike;
+export default BrandProducts;
