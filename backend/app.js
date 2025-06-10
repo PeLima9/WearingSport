@@ -13,6 +13,7 @@ import salesRoutes from "./src/routes/sales.js";
 import registerEmpRoutes from "./src/routes/registerEmployees.js";
 import registerCliRoutes from "./src/routes/registerClients.js";
 import loginRoutes from "./src/routes/login.js";
+import categoriesRoutes from "./src/routes/categories.js";
 
 // Crear instancia de la app
 const app = express();
@@ -47,6 +48,7 @@ app.use(cookieParser());
 
 // Definición de rutas
 app.use("/api/Brands", brandsRoutes);
+app.use("/api/Categories", categoriesRoutes);
 app.use("/api/Customers", customersRoutes);
 app.use("/api/Employees", employeesRoutes);
 app.use("/api/Products", productsRoutes);

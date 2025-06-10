@@ -13,10 +13,11 @@ const AgregarProducto = () => {
   });
 
   const [marcas, setMarcas] = useState([]); // ✅ marcas desde la API
+  const [categorias, setCategorias] = useState([]); // ✅ categorías desde la API
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // ✅ Cargar marcas desde el backend
+  // ✅ Cargar marcas y categorías desde el backend
   useEffect(() => {
     const fetchMarcas = async () => {
       try {
@@ -28,7 +29,18 @@ const AgregarProducto = () => {
       }
     };
 
+    const fetchCategorias = async () => {
+      try {
+        const res = await fetch('http://localhost:4000/api/Categories');
+        const data = await res.json();
+        setCategorias(data);
+      } catch (err) {
+        console.error('Error al obtener categorías:', err);
+      }
+    };
+
     fetchMarcas();
+    fetchCategorias();
   }, []);
 
   const handleChange = (e) => {
@@ -83,9 +95,11 @@ const AgregarProducto = () => {
           description: '',
           image: null,
           categories: '',
-          brand: '',
+          brandId: '',
           stock: '',
         });
+        // Limpiar el input de archivo
+        document.querySelector('input[type="file"]').value = '';
       } else {
         const result = await response.json();
         setError(result.message || 'Hubo un error al agregar el producto');
@@ -176,9 +190,11 @@ const AgregarProducto = () => {
             required
           >
             <option value="">Selecciona una categoría</option>
-            <option value="running">Running</option>
-            <option value="gym">Entrenamiento</option>
-            <option value="moda">Moda</option>
+            {categorias.map((categoria) => (
+              <option key={categoria._id} value={categoria._id}>
+                {categoria.categoryName}
+              </option>
+            ))}
           </select>
         </label>
 

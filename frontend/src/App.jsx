@@ -39,8 +39,10 @@ import AgregarUsuario from './pages/Admin/AgregarUsuario';
 import AgregarProducto from './pages/Admin/AgregarProducto';
 import ListaUsuario from './pages/Admin/ListaUsuarios';
 import CrearMarca from './pages/Admin/CrearMarca';
+import CrearCategoria from './pages/Admin/CrearCategoria';
 import ListaMarcas from './pages/Admin/ListaMarcas';
 import BrandProducts from './components/BrandProducts';
+import CategoryProducts from './components/CategorieProducts';
 import './App.css';
 
 function App() {
@@ -122,8 +124,11 @@ function App() {
          <Route path='agregarproducto' element={<AgregarProducto />} />
          <Route path='listausuarios' element={<ListaUsuario />} />
          <Route path='crearmarca' element={<CrearMarca />} />
+         <Route path='crearcategoria' element={<CrearCategoria />} />
          <Route path='listamarcas' element={<ListaMarcas />} />
+         <Route path='listacategorias' element={<ListaCategorias />} />
         <Route path='brandproducts' element={<BrandProducts />} />
+        <Route path='categorieproducts' element={<CategoryProducts />} />
 
         </Route>
 
@@ -142,6 +147,7 @@ function App() {
 }
 
 import { BrowserRouter } from 'react-router-dom';
+import ListaCategorias from './pages/Admin/ListaCategorias';
 
 export default function WrappedApp() {
   return (
