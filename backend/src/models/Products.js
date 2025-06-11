@@ -35,9 +35,10 @@ const producsSchema = new Schema({
         min: 0
     },
     categories: {
-        type: String,
-        require: true,
-    },
+        type: Schema.Types.ObjectId,
+        ref: "Categories", // <--- Este debe coincidir con el nombre del modelo de categorías
+        required: true,
+      },
     brandId: {
         type: Schema.Types.ObjectId,
         ref: "Brands",

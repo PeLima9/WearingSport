@@ -2,7 +2,7 @@ import { v2 as cloudinary } from "cloudinary";
 import productsModel from "../models/Products.js";
 import { config } from "../config.js";
 
-// 1. Configurar Cloudinary
+// Configurar Cloudinary
 cloudinary.config({
     cloud_name: config.cloudinary.cloudinary_name,
     api_key: config.cloudinary.cloudinary_api_key,
@@ -11,40 +11,40 @@ cloudinary.config({
 
 const productsController = {};
 
-// Select / Get
+// GET: obtener todos los productos con datos de categoría y marca
 productsController.getProducts = async (req, res) => {
     try {
-        const products = await productsModel.find().populate('brandId', 'brandName');
+        const products = await productsModel
+            .find()
+            .populate('categories', 'categoryName')  // Agrega nombre de la categoría
+            .populate('brandId', 'brandName');       // Agrega nombre de la marca
+
         res.json(products);
     } catch (error) {
         res.status(500).json({ message: "Error retrieving products", error });
     }
 };
 
-// Insert / Post
+// POST: insertar nuevo producto
 productsController.insertProducts = async (req, res) => {
     const { productName, description, price, stock, categories, brandId } = req.body;
-    const { file } = req; // Aquí obtenemos el archivo de imagen
+    const { file } = req;
 
-    // Verificar si se ha subido una imagen
     if (!file) {
         return res.status(400).json({ message: "No image uploaded" });
     }
 
-    // Validación de tipo de imagen (solo imágenes JPEG, PNG o GIF)
     const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
     if (!validImageTypes.includes(file.mimetype)) {
         return res.status(400).json({ message: "Invalid image format. Please upload a valid image." });
     }
 
     try {
-        // Subir imagen a Cloudinary
         const result = await cloudinary.uploader.upload(file.path, {
-            folder: 'products', // Se almacenará en la carpeta 'products' de Cloudinary
-            resource_type: 'auto', // Detecta automáticamente el tipo de archivo (imagen, video, etc.)
+            folder: 'products',
+            resource_type: 'auto',
         });
 
-        // Crear un nuevo producto con la URL de la imagen
         const newProduct = new productsModel({
             productName,
             description,
@@ -52,13 +52,11 @@ productsController.insertProducts = async (req, res) => {
             stock,
             categories,
             brandId,
-            imageUrl: result.secure_url, // Guardar la URL de la imagen en la base de datos
+            imageUrl: result.secure_url,
         });
 
-        // Guardar el producto en la base de datos
         await newProduct.save();
 
-        // Responder con el éxito de la operación
         res.json({ message: "Product added successfully", newProduct });
     } catch (error) {
         console.error("Error uploading image:", error);
@@ -66,7 +64,7 @@ productsController.insertProducts = async (req, res) => {
     }
 };
 
-// Delete / Remove
+// DELETE
 productsController.deleteProducts = async (req, res) => {
     try {
         await productsModel.findByIdAndDelete(req.params.id);
@@ -76,14 +74,14 @@ productsController.deleteProducts = async (req, res) => {
     }
 };
 
-// Update / Put
+// PUT / Update
 productsController.updateProducts = async (req, res) => {
-    const { productName, description, price, stock, categories, brandId} = req.body;
+    const { productName, description, price, stock, categories, brandId } = req.body;
     try {
         const updatedProduct = await productsModel.findByIdAndUpdate(
             req.params.id,
             { productName, description, price, stock, categories, brandId },
-            { new: true } // Devuelve el producto actualizado
+            { new: true }
         );
         res.json({ message: "Product updated successfully", updatedProduct });
     } catch (error) {
