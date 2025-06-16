@@ -14,6 +14,7 @@ import Ofertas1 from './pages/Ofertas1';
 import Recuperar from './components/Recuperar';
 import NuevaContrasena from './components/NuevaContrasena';
 import CrearCuenta from './components/CrearCuenta';
+import Perfil from './pages/Perfil';
 import About from './pages/About';
 import Nike from './pages/Nike';
 import Adidas from './pages/Adidas';
@@ -24,8 +25,12 @@ import Asics from './pages/Asics';
 import Converse from './pages/Converse';
 import Hoka from './pages/Hoka';
 import ProductDetail from './pages/ProductDetail'; // Asegúrate de que esté bien escrito
+///////
 import Running from './pages/Runnig';
 import Entrenamiento from './pages/Entrenamiento';
+import Deportes from './pages/Deportes';
+import Ciclismo from './pages/Ciclismo';
+////
 import Terminos from './components/Terminos';
 import Comentarios from './pages/Comentarios';
 import NuevoComentario from './pages/NuevoComentario';
@@ -91,6 +96,7 @@ function App() {
           <Route path="/recuperar" element={<Recuperar />} />
           <Route path='/nuevacontrasena' element={<NuevaContrasena />} />
           <Route path="/crear-cuenta" element={<CrearCuenta />} />
+          <Route path="/perfil" element={<Perfil />} />
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/aboutus" element={<About />} />
 
@@ -110,6 +116,8 @@ function App() {
           {/* Rutas categorías */}
           <Route path="/categorias/runinnyatletismo" element={<Running />} />
           <Route path="/categorias/entrenamientoygym" element={<Entrenamiento />} />
+           <Route path="/categorias/deportesdecancha" element={<Deportes />} />
+          <Route path="/categorias/ciclismo" element={<Ciclismo />} />
 
           <Route path="/ofertas" element={<Ofertas />} />
           <Route path='/ofertas1' element={<Ofertas1 />} />

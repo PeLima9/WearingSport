@@ -3,21 +3,64 @@ import "./CrearCuenta.css";
 
 const CrearCuenta = () => {
   const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [phone, setPhone] = useState("");
 
-  const handleSubmit = (e) => {
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validación de campos
-    if (!name || !surname || !email || !password) {
+    if (!name || !email || !password || !phone) {
       setError("Por favor, llena todos los campos.");
-    } else {
-      setError("");
-      // Lógica para crear cuenta
-      console.log("Cuenta creada:", { name, surname, email, password });
+      setSuccess("");
+      return;
+    }
+
+    // Validar teléfono básico (solo dígitos, longitud típica 7-15)
+    const phoneRegex = /^[0-9]{7,15}$/;
+    if (!phoneRegex.test(phone)) {
+      setError("Por favor ingresa un número de teléfono válido.");
+      setSuccess("");
+      return;
+    }
+
+    setError("");
+
+    try {
+      const response = await fetch("http://localhost:4000/api/RegisterClients", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          phoneNumber: phone,
+          isVerified: false,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess("Registro exitoso. Por favor verifica tu correo.");
+        setError("");
+        // Opcional: limpiar formulario
+        setName("");
+        setEmail("");
+        setPassword("");
+        setPhone("");
+      } else {
+        setError(data.message || "Error en el registro");
+        setSuccess("");
+      }
+    } catch (error) {
+      setError("Error al conectar con el servidor");
+      setSuccess("");
     }
   };
 
@@ -35,19 +78,6 @@ const CrearCuenta = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Nombre"
-              required
-            />
-          </div>
-
-          <div className="input-group">
-            <label htmlFor="surname"></label>
-            <input
-              type="text"
-              id="surname"
-              name="surname"
-              value={surname}
-              onChange={(e) => setSurname(e.target.value)}
-              placeholder="Apellido"
               required
             />
           </div>
@@ -78,8 +108,29 @@ const CrearCuenta = () => {
             />
           </div>
 
-          {/* Mostrar error si algún campo está vacío */}
+          <div className="input-group">
+            <label htmlFor="phone"></label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={phone}
+              onChange={(e) => {
+                // Solo números
+                const val = e.target.value;
+                if (/^\d*$/.test(val)) setPhone(val);
+              }}
+              placeholder="Número de teléfono"
+              required
+              inputMode="numeric"
+              pattern="[0-9]*"
+              maxLength={15}
+              autoComplete="tel"
+            />
+          </div>
+
           {error && <div className="error-message">{error}</div>}
+          {success && <div className="success-message">{success}</div>}
 
           <button type="submit" className="login-button">
             Crear Cuenta

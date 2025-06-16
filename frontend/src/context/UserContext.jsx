@@ -1,13 +1,34 @@
-// context/UserContext.js
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  // Verifica si hay sesión activa al cargar la app
+  useEffect(() => {
+    fetch("http://localhost:4000/api/Login/profile", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.success) setUser(data.user);
+      })
+      .catch((err) => {
+        console.error("Error al verificar la sesión:", err);
+      });
+  }, []);
+
   const login = (userData) => setUser(userData);
-  const logout = () => setUser(null);
+  const logout = () => {
+    fetch("http://localhost:4000/api/Login/logout", {
+      method: "POST",
+      credentials: "include",
+    })
+      .then(() => setUser(null))
+      .catch((err) => console.error("Error al cerrar sesión:", err));
+  };
 
   return (
     <UserContext.Provider value={{ user, login, logout }}>
@@ -16,5 +37,4 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-// Hook personalizado para consumir el contexto más fácilmente
 export const useUser = () => useContext(UserContext);
