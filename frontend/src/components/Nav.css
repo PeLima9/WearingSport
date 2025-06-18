@@ -6,7 +6,8 @@
   background: linear-gradient(135deg, #6B3A5B, #610345);; /* Color de fondo */
   padding: 20px 40px;
   color: white;
-  
+   z-index: 999;
+  position: relative;
 
 }
 

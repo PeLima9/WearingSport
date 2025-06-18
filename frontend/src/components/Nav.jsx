@@ -53,7 +53,6 @@ const Nav = () => {
                 <li><Link to="/categorias/runinnyatletismo">Runinng y Atletismo</Link></li>
                 <li><Link to="/categorias/entrenamientoygym">Entrenamiento y Gym</Link></li>
                 <li><Link to="/categorias/deportesdecancha">Deportes de Cancha</Link></li>
-                <li><Link to="/categorias/futbolyfutbolsala">Futbol y futbol sala</Link></li>
                 <li><Link to="/categorias/ciclismo">Ciclismo</Link></li>
               </ul>
             )}
