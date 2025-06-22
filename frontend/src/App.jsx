@@ -73,6 +73,8 @@ import AdminCrearOferta from './pages/Admin/AdminCrearOferta';
 import AdminPedidos from './components/Admin/AdminPedidos';
 import AdminReviews from './pages/Admin/AdminReviews';
 
+import ListaCustomers from './components/Admin/ListaCustomers';
+
 // Componente para protección de rutas según rol
 import RutaProtegida from './components/RutaProtegida';
 
@@ -171,6 +173,7 @@ function App() {
             <Route path="agregarproducto" element={<AgregarProducto />} />
             <Route path="productos" element={<ProductosAdmin />} />
             <Route path="listausuarios" element={<ListaUsuario />} />
+            <Route path="/admin/customers" element={<ListaCustomers />} />
             <Route path="crearmarca" element={<CrearMarca />} />
             <Route path="crearcategoria" element={<CrearCategoria />} />
             <Route path="listamarcas" element={<ListaMarcas />} />

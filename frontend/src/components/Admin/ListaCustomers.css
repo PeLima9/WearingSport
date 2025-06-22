@@ -1,0 +1,57 @@
+.lista-customers-container {
+  padding: 20px;
+  background: linear-gradient(135deg, #f9f9f99c, #e6f0ff44);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.tabla-customers {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  background: rgba(255, 255, 255, 0.15); /* Muy transparente */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(10px); /* Difumina el fondo que hay detrás */
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.tabla-customers th,
+.tabla-customers td {
+  padding: 14px 18px;
+  text-align: left;
+}
+
+.tabla-customers th {
+  background: rgba(74, 144, 226, 0.8);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  user-select: none;
+}
+
+.tabla-customers tbody tr {
+   background: linear-gradient(135deg, #f9f9f99c, #9ca8b944);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.tabla-customers tbody tr:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.tabla-customers tbody td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+}
+
+.tabla-customers tbody tr:last-child td {
+  border-bottom: none;
+}

@@ -26,6 +26,7 @@ const NavbarAdmin = () => {
       <ul className={menuAbierto ? "nav-links activo" : "nav-links"}>
         <li><Link to="/admin" onClick={cerrarMenu}>Dashboard</Link></li>
         <li><Link to="/admin/agregarusuario" onClick={cerrarMenu}>Empleado</Link></li>
+        <li><Link to="/admin/customers" onClick={cerrarMenu}>Clientes</Link></li>
         <li><Link to="/admin/agregarproducto" onClick={cerrarMenu}>Productos</Link></li>
         <li><Link to="/admin/crearoferta" onClick={cerrarMenu}>Ofertas</Link></li>
         <li><Link to="/admin/crearmarca" onClick={cerrarMenu}>Marca</Link></li>

@@ -1,94 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useUsuarios } from "../../hooks/useUsuarios";
+import ModalEditarUsuario from "../../components/Admin/ModalEditarUsuario";
 import "./ListaUsuarios.css";
 
 const ListaUsuario = () => {
-  const [usuarios, setUsuarios] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { usuarios, loading, error, actualizarUsuario, eliminarUsuario } = useUsuarios();
 
-  // Estado para edición
   const [usuarioEditando, setUsuarioEditando] = useState(null);
   const [mostrarModal, setMostrarModal] = useState(false);
+  const [mensajeErrorEdicion, setMensajeErrorEdicion] = useState("");
 
-  // Abrir modal con datos del usuario a editar
   const abrirModalEdicion = (usuario) => {
     setUsuarioEditando(usuario);
+    setMensajeErrorEdicion("");
     setMostrarModal(true);
   };
 
-  // Cerrar modal
   const cerrarModal = () => {
     setMostrarModal(false);
     setUsuarioEditando(null);
   };
 
-  // Obtener usuarios del backend
-  useEffect(() => {
-    const fetchUsuarios = async () => {
-      try {
-        const response = await fetch("http://localhost:4000/api/Employees");
-        if (!response.ok) throw new Error("Error al obtener usuarios");
-        const data = await response.json();
-        setUsuarios(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchUsuarios();
-  }, []);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUsuarioEditando((prev) => ({ ...prev, [name]: value }));
+  };
 
-  // Guardar cambios del usuario editado
   const handleEditarUsuario = async (e) => {
     e.preventDefault();
-
-    try {
-      const response = await fetch(`http://localhost:4000/api/Employees/${usuarioEditando._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(usuarioEditando),
-      });
-
-      if (!response.ok) throw new Error("Error al actualizar usuario");
-
-      // Actualizar lista localmente
-      const usuariosActualizados = usuarios.map((u) =>
-        u._id === usuarioEditando._id ? usuarioEditando : u
-      );
-      setUsuarios(usuariosActualizados);
+    const res = await actualizarUsuario(usuarioEditando);
+    if (res.success) {
       cerrarModal();
-    } catch (error) {
-      alert("Error al actualizar usuario");
-      console.error(error);
+    } else {
+      setMensajeErrorEdicion(res.message || "Error al actualizar usuario");
     }
   };
 
-  // Manejar cambios en los inputs del formulario de edición
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setUsuarioEditando({ ...usuarioEditando, [name]: value });
+  const handleEliminarUsuario = async (id) => {
+    if (!window.confirm("¿Estás seguro de que quieres eliminar este usuario?")) return;
+    const res = await eliminarUsuario(id);
+    if (!res.success) alert(res.message || "Error al eliminar usuario");
   };
-
-  const eliminarUsuario = async (id) => {
-  const confirmar = window.confirm("¿Estás seguro de que quieres eliminar este usuario?");
-  if (!confirmar) return;
-
-  try {
-    const response = await fetch(`http://localhost:4000/api/Employees/${id}`, {
-      method: "DELETE",
-    });
-
-    if (!response.ok) throw new Error("Error al eliminar usuario");
-
-    // Eliminar usuario de la lista localmente
-    const nuevosUsuarios = usuarios.filter((u) => u._id !== id);
-    setUsuarios(nuevosUsuarios);
-  } catch (error) {
-    alert("Error al eliminar usuario");
-    console.error(error);
-  }
-};
 
   return (
     <div className="lista-usuario-container">
@@ -96,7 +48,6 @@ const ListaUsuario = () => {
 
       {loading && <p>Cargando usuarios...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
-
       {!loading && !error && usuarios.length === 0 && <p>No hay usuarios registrados.</p>}
 
       {!loading && !error && usuarios.length > 0 && (
@@ -123,11 +74,11 @@ const ListaUsuario = () => {
                     Editar
                   </button>
                   <button
-  className="btn-eliminar"
-  onClick={() => eliminarUsuario(usuario._id)}
->
-  Eliminar
-</button>
+                    className="btn-eliminar"
+                    onClick={() => handleEliminarUsuario(usuario._id)}
+                  >
+                    Eliminar
+                  </button>
                 </td>
               </tr>
             ))}
@@ -135,53 +86,14 @@ const ListaUsuario = () => {
         </table>
       )}
 
-      {/* Modal de edición */}
       {mostrarModal && usuarioEditando && (
-        <div className="modal">
-          <div className="modal-content">
-            <h3>Editar Usuario</h3>
-            <form onSubmit={handleEditarUsuario}>
-              <label>Nombre:</label>
-              <input
-                type="text"
-                name="name"
-                value={usuarioEditando.name}
-                onChange={handleChange}
-                required
-              />
-
-              <label>Correo:</label>
-              <input
-                type="email"
-                name="email"
-                value={usuarioEditando.email}
-                onChange={handleChange}
-                required
-              />
-
-              <label>Rol:</label>
-<select
-  name="rol"
-  value={usuarioEditando.rol}
-  onChange={handleChange}
-  required
->
-  <option value="">-- Selecciona un rol --</option>
-  <option value="cliente">Cliente</option>
-  <option value="admin">Admin</option>
-  <option value="empleado">Empleado</option>
-
-</select>
-<br></br>
-<br></br>
-
-              <button type="submit">Guardar</button>
-              <button type="button" onClick={cerrarModal}>
-                Cancelar
-              </button>
-            </form>
-          </div>
-        </div>
+        <ModalEditarUsuario
+          usuarioEditando={usuarioEditando}
+          onChange={handleChange}
+          onSubmit={handleEditarUsuario}
+          onCerrar={cerrarModal}
+          mensajeError={mensajeErrorEdicion}
+        />
       )}
     </div>
   );

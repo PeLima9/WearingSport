@@ -1,11 +1,14 @@
-// Nueva pantalla: ProductosAdmin.jsx
 import React, { useState, useEffect } from 'react';
+import { useMarcas } from '../../hooks/useMarcas';
+import { useCategorias } from '../../hooks/useCategorias';
+import ModalEditarProducto from '../../components/Admin/ModalEditarProducto';
 import './ProductosAdmin.css';
 
 const ProductosAdmin = () => {
+  const marcas = useMarcas();
+  const categorias = useCategorias();
+
   const [productos, setProductos] = useState([]);
-  const [marcas, setMarcas] = useState([]);
-  const [categorias, setCategorias] = useState([]);
   const [filtroMarca, setFiltroMarca] = useState('');
   const [productoEditando, setProductoEditando] = useState(null);
   const [productoAEliminar, setProductoAEliminar] = useState(null);
@@ -20,87 +23,103 @@ const ProductosAdmin = () => {
     stock: '',
   });
 
-  useEffect(() => {
-    const fetchMarcas = async () => {
-      const res = await fetch('http://localhost:4000/api/Brands');
-      const data = await res.json();
-      setMarcas(data);
-    };
-    const fetchCategorias = async () => {
-      const res = await fetch('http://localhost:4000/api/Categories');
-      const data = await res.json();
-      setCategorias(data);
-    };
-    fetchMarcas();
-    fetchCategorias();
-  }, []);
-
+  // Cargar productos
   useEffect(() => {
     const fetchProductos = async () => {
-      const res = await fetch('http://localhost:4000/api/Products');
-      const data = await res.json();
-      setProductos(data);
+      try {
+        const res = await fetch('http://localhost:4000/api/Products');
+        const data = await res.json();
+        setProductos(data);
+      } catch (error) {
+        console.error('Error al cargar productos:', error);
+      }
     };
     fetchProductos();
   }, []);
 
+  // Confirmar eliminación
   const confirmarDelete = async () => {
     if (!productoAEliminar) return;
-    await fetch(`http://localhost:4000/api/Products/${productoAEliminar}`, { method: 'DELETE' });
-    setProductos(productos.filter(p => p._id !== productoAEliminar));
+
+    try {
+      const res = await fetch(`http://localhost:4000/api/Products/${productoAEliminar}`, {
+        method: 'DELETE',
+      });
+      if (!res.ok) throw new Error('Error al eliminar producto');
+
+      setProductos(productos.filter(p => p._id !== productoAEliminar));
+      setNotificacion('Producto eliminado exitosamente.');
+      setTimeout(() => setNotificacion(''), 3000);
+    } catch (error) {
+      setNotificacion('Error al eliminar producto.');
+      console.error(error);
+    }
     setProductoAEliminar(null);
-    setNotificacion('Producto eliminado exitosamente.');
-    setTimeout(() => setNotificacion(''), 3000);
   };
 
+  // Editar producto
   const handleEditClick = (producto) => {
     setProductoEditando(producto);
     setFormData({
       productName: producto.productName,
       price: producto.price,
       description: producto.description,
-      image: null,
-      categories: producto.categories._id || producto.categories,
-      brandId: producto.brandId._id || producto.brandId,
+      image: null, // se puede cargar null para nueva imagen
+      categories: typeof producto.categories === 'object' ? producto.categories._id : producto.categories,
+      brandId: typeof producto.brandId === 'object' ? producto.brandId._id : producto.brandId,
       stock: producto.stock,
     });
   };
 
+  // Cambios en formulario
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  // Cambios en input file
   const handleFileChange = (e) => {
     setFormData(prev => ({ ...prev, image: e.target.files[0] }));
   };
 
+  // Guardar cambios producto
   const handleUpdate = async (e) => {
     e.preventDefault();
+
     const dataToSend = new FormData();
     Object.entries(formData).forEach(([key, val]) => {
-      if (val) dataToSend.append(key, val);
+      if (val !== null && val !== '') {
+        dataToSend.append(key, val);
+      }
     });
 
-    const res = await fetch(`http://localhost:4000/api/Products/${productoEditando._id}`, {
-      method: 'PUT',
-      body: dataToSend
-    });
+    try {
+      const res = await fetch(`http://localhost:4000/api/Products/${productoEditando._id}`, {
+        method: 'PUT',
+        body: dataToSend,
+      });
+      if (!res.ok) throw new Error('Error al actualizar producto');
 
-    const updated = await res.json();
-    setProductoEditando(null);
-    setProductos(prev => prev.map(p => p._id === updated.updatedProduct._id ? updated.updatedProduct : p));
-    setNotificacion('Producto actualizado exitosamente.');
-    setTimeout(() => setNotificacion(''), 3000);
+      const updated = await res.json();
+      setProductos(prev =>
+        prev.map(p => (p._id === updated.updatedProduct._id ? updated.updatedProduct : p))
+      );
+      setProductoEditando(null);
+      setNotificacion('Producto actualizado exitosamente.');
+      setTimeout(() => setNotificacion(''), 3000);
+    } catch (error) {
+      setNotificacion('Error al actualizar producto.');
+      console.error(error);
+    }
   };
 
+  // Filtrar productos por marca
   const productosFiltrados = filtroMarca
     ? productos.filter(p => {
         if (typeof p.brandId === 'object' && p.brandId !== null) {
           return p.brandId._id === filtroMarca;
-        } else {
-          return p.brandId === filtroMarca;
         }
+        return p.brandId === filtroMarca;
       })
     : productos;
 
@@ -112,13 +131,13 @@ const ProductosAdmin = () => {
 
       <select value={filtroMarca} onChange={(e) => setFiltroMarca(e.target.value)}>
         <option value="">-- Filtrar por marca --</option>
-        {marcas.map((m) => (
+        {marcas.map(m => (
           <option key={m._id} value={m._id}>{m.brandName}</option>
         ))}
       </select>
 
       <div className="productos-lista">
-        {productosFiltrados.map((prod) => (
+        {productosFiltrados.map(prod => (
           <div key={prod._id} className="producto-item">
             <img src={prod.imageUrl} alt={prod.productName} width="100" />
             <h4>{prod.productName}</h4>
@@ -130,6 +149,7 @@ const ProductosAdmin = () => {
         ))}
       </div>
 
+      {/* Modal para confirmar eliminación */}
       {productoAEliminar && (
         <div className="modal-overlay">
           <div className="modal modal-confirm">
@@ -143,47 +163,17 @@ const ProductosAdmin = () => {
         </div>
       )}
 
+      {/* Modal para editar producto usando componente separado */}
       {productoEditando && (
-        <div className="modal-overlay">
-          <div className="modal modal-editar">
-            <h3>Editar Producto</h3>
-            <form onSubmit={handleUpdate} className="editar-formulario">
-              <div className="form-group">
-                <label>Nombre:</label>
-                <input type="text" name="productName" value={formData.productName} onChange={handleFormChange} required />
-              </div>
-              <div className="form-group">
-                <label>Precio:</label>
-                <input type="number" name="price" value={formData.price} onChange={handleFormChange} required />
-              </div>
-              <div className="form-group">
-                <label>Stock:</label>
-                <input type="number" name="stock" value={formData.stock} onChange={handleFormChange} required />
-              </div>
-              <div className="form-group">
-                <label>Descripción:</label>
-                <textarea name="description" value={formData.description} onChange={handleFormChange} />
-              </div>
-              <div className="form-group">
-                <label>Categoría:</label>
-                <select name="categories" value={formData.categories} onChange={handleFormChange} required>
-                  <option value="">Selecciona una categoría</option>
-                  {categorias.map(cat => (
-                    <option key={cat._id} value={cat._id}>{cat.categoryName}</option>
-                  ))}
-                </select>
-              </div>
-              <div className="form-group">
-                <label>Imagen (opcional):</label>
-                <input type="file" name="image" onChange={handleFileChange} />
-              </div>
-              <div className="modal-buttons">
-                <button type="submit" className="btn-confirm">Guardar Cambios</button>
-                <button type="button" className="btn-cancel" onClick={() => setProductoEditando(null)}>Cancelar</button>
-              </div>
-            </form>
-          </div>
-        </div>
+        <ModalEditarProducto
+          producto={productoEditando}
+          categorias={categorias}
+          formData={formData}
+          onChange={handleFormChange}
+          onFileChange={handleFileChange}
+          onSubmit={handleUpdate}
+          onCancelar={() => setProductoEditando(null)}
+        />
       )}
     </div>
   );
