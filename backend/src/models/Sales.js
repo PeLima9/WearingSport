@@ -19,7 +19,7 @@ const salesSchema = new Schema({
         type: Number,
         require: true
     },
-    Address: {
+    address: {
         type: String,
         require: true
     }

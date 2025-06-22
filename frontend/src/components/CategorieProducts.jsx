@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './BrandProducts.css'; // Reutilizando los mismos estilos
+import './BrandProducts.css'; // Reutilizando los estilos
 
 const CategoryProducts = ({ categoryName }) => {
   const navigate = useNavigate();
@@ -9,10 +9,9 @@ const CategoryProducts = ({ categoryName }) => {
   const productsPerPage = 8;
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/Products')
+    fetch('http://localhost:4000/api/Products/con-oferta')
       .then(res => res.json())
       .then(data => {
-        // Filtrar por categoría en lugar de marca
         const filtered = data.filter(prod => prod.categories?.categoryName === categoryName);
         setProductos(filtered);
       })
@@ -43,7 +42,7 @@ const CategoryProducts = ({ categoryName }) => {
   return (
     <div className="brand-page">
       <div className="brand-header h1">
-        <h1>{categoryName}</h1> {/* Muestra el nombre de la categoría */}
+        <h1>{categoryName}</h1>
       </div>
 
       {productos.length === 0 ? (
@@ -63,8 +62,21 @@ const CategoryProducts = ({ categoryName }) => {
                 <img src={shoe.imageUrl} alt={shoe.productName} />
                 <div className="product-info">
                   <h3>{shoe.productName}</h3>
-                  <p>${shoe.price}</p>
-                  {/* Mostrar también la marca si quieres */}
+
+                  {shoe.oferta ? (
+                    <>
+                      <p>
+                        <span className="precio-original">${shoe.price.toFixed(2)}</span>{' '}
+                        <span className="precio-descuento">
+                          ${ (shoe.price - (shoe.price * shoe.oferta.descuento / 100)).toFixed(2) }
+                        </span>
+                      </p>
+                      <p className="descuento-text">{shoe.oferta.descuento}% OFF</p>
+                    </>
+                  ) : (
+                    <p>${shoe.price.toFixed(2)}</p>
+                  )}
+
                   <span className="product-brand">{shoe.brandId?.brandName}</span>
                 </div>
               </div>

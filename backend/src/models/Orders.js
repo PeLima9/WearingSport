@@ -1,39 +1,44 @@
-/*
-    Campos:
-        clientId
-        products (Array)
-        total
-        orderStatus
-*/
+import { Schema, model } from "mongoose";
 
-//Mongoose
-import {Schema, model} from "mongoose";
-
-//Schema
 const ordersSchema = new Schema({
-    clientId: {
+  clientId: {
+    type: Schema.Types.ObjectId,
+    ref: "Customers",
+    required: true,
+  },
+
+  products: [
+    {
+      productId: {
         type: Schema.Types.ObjectId,
-        ref: "Customers",
-        require: true
+        ref: "Products",
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        required: true,
+        min: 1,
+      },
+      price: {
+        type: Number,
+        required: true,
+      },
     },
+  ],
 
-    products: {
-        type: String
-        //No me acuerdo como era para hacerlo en array, perdón profe
-    },
+  total: {
+    type: Number,
+    required: true,
+  },
 
-    total: {
-        //De esto tampoco me acuerdo
-    },
-
-    orderStatus: {
-        type: String,
-        require: true
-    }
+  orderStatus: {
+    type: String,
+    required: true,
+    default: "Pendiente",
+  },
 }, {
-    timestamps: true,
-    strict: false
+  timestamps: true,
+  strict: false,
 });
 
-//Export
 export default model("Orders", ordersSchema);

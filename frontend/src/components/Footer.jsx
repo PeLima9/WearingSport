@@ -1,7 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  // Funciones para manejar la navegación sin recargar página
+  const handleComentarios = () => {
+    navigate('/comentarios');
+  };
+
+  const handleTerminos = () => {
+    navigate('/terminos');
+  };
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -23,10 +35,20 @@ const Footer = () => {
         {/* Sección central - Enlaces */}
         <div className="footer-center">
           <div className="footer-links">
-            <a href="/comentarios">Comentarios</a>
+            <button 
+              onClick={handleComentarios}
+              className="footer-link-button"
+            >
+              Comentarios
+            </button>
           </div>
           <div className="footer-links">
-            <a href="/terminos">Términos y condiciones</a>
+            <button 
+              onClick={handleTerminos}
+              className="footer-link-button"
+            >
+              Términos y condiciones
+            </button>
           </div>
         </div>
         
@@ -34,13 +56,28 @@ const Footer = () => {
         <div className="footer-right">
           <div className="footer-social-title">Síguenos en:</div>
           <div className="footer-social-icons">
-            <a href="#" className="social-icon">
+            <a 
+              href="https://facebook.com" 
+              className="social-icon"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <i className="fab fa-facebook-f"></i>
             </a>
-            <a href="#" className="social-icon">
+            <a 
+              href="https://instagram.com" 
+              className="social-icon"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <i className="fab fa-instagram"></i>
             </a>
-            <a href="#" className="social-icon">
+            <a 
+              href="https://tiktok.com" 
+              className="social-icon"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <i className="fab fa-tiktok"></i>
             </a>
           </div>

@@ -134,6 +134,24 @@
   background-color: #666;
 }
 
+.precio-original {
+  text-decoration: line-through;
+  color: gray;
+  margin-right: 8px;
+}
+
+.precio-descuento {
+  color: #e60000;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.descuento-text {
+  color: #007f00;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .brand-page {

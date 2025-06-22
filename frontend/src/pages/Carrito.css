@@ -1,86 +1,146 @@
 .carrito-container {
     text-align: center;
     padding: 20px;
-  }
-  
-  .carrito-container h2 {
+}
+
+.carrito-container h2 {
     font-size: 24px;
     color: #333;
-  }
-  
-  .carrito-container p {
+}
+
+.carrito-container p {
     font-size: 18px;
     color: #666;
-  }
-  
-  /* Estilos del contenedor del producto */
-  .producto-carrito {
+}
+
+/* Estilos del contenedor del producto - Mayor separación */
+.producto-carrito {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start; /* Cambio a flex-start para mejor alineación */
     background-color: #f4f4f4;
-    padding: 15px;
+    padding: 20px; /* Aumenté el padding */
     margin-top: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    margin: 0 auto;
-  }
-  
-  .producto-imagen img {
+    width: 85%; /* Aumenté el ancho para más espacio */
+    margin: 20px auto;
+    gap: 30px; /* Agregué gap para separar imagen y contenido */
+}
+
+.producto-imagen {
+    flex-shrink: 0; /* Evita que la imagen se reduzca */
+}
+
+.producto-imagen img {
     width: 150px;
     height: 150px;
     object-fit: cover;
     border-radius: 8px;
-    margin-right: 20px;
-  }
-  
-  .producto-detalles {
+    /* Removí margin-right ya que uso gap en el contenedor */
+}
+
+.producto-detalles {
     text-align: left;
-  }
-  
-  .producto-detalles h3 {
+    flex: 1; /* Ocupa el espacio restante */
+    padding-left: 10px; /* Padding adicional para más separación */
+}
+
+.producto-detalles h3 {
     font-size: 20px;
     color: #333;
-  }
-  
-  .producto-detalles p {
+    margin-bottom: 8px; /* Espaciado entre título y descripción */
+}
+
+.producto-detalles p {
     font-size: 16px;
     color: #777;
-    margin-bottom: 10px;
-  }
-  
-  .producto-cantidad {
+    margin-bottom: 12px; /* Más espacio entre elementos */
+}
+
+.producto-cantidad {
     display: flex;
     justify-content: flex-start;
+    gap: 15px; /* Más espacio entre botones */
+    margin-top: 15px; /* Separación del contenido superior */
+}
+
+/* Nuevo contenedor para separar controles y botón borrar */
+.controls-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Separación entre grupo controles y botón borrar */
+    margin-top: 10px;
+}
+
+.cantidad-controles {
+    display: flex;
+    align-items: center;
     gap: 10px;
-  }
-  
-  .btn-agregar,
-  .btn-borrar {
-    padding: 8px 16px;
+}
+
+.btn-cantidad {
+    padding: 4px 10px;
+    font-size: 18px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.cantidad-numero {
+    font-weight: bold;
     font-size: 16px;
+}
+
+.view-more {
+    padding: 6px 12px;
+    background-color: #4CAF50; /* Verde consistente con btn-agregar */
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    min-width: 120px;
+    transition: background-color 0.3s ease;
+}
+
+.view-more:hover {
+    background-color: #45a049;
+}
+
+.btn-borrar {
+    padding: 10px 18px; /* Mantengo tamaño de botón borrar */
+    font-size: 16px;
+    background-color: #f44336;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .btn-agregar {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .btn-agregar:hover {
-    background-color: #45a049;
-  }
-  
-  .btn-borrar {
-    background-color: #f44336;
-    color: white;
-  }
-  
-  .btn-borrar:hover {
+    min-width: 120px;
+}
+
+.btn-borrar:hover {
     background-color: #e53935;
-  }
-  
+}
+
+.precio-original {
+    text-decoration: line-through;
+    color: #888;
+    margin-right: 8px;
+}
+
+.precio-descuento {
+    color: #d10000;
+    font-weight: bold;
+}
+
+.subtotal-carrito {
+    margin-top: 30px; /* Más espacio antes del subtotal */
+    text-align: right;
+    padding: 15px;
+    font-size: 1.2rem;
+    border-top: 2px solid #ccc; /* Línea más gruesa */
+    background-color: #f9f9f9; /* Fondo sutil */
+    border-radius: 5px;
+}

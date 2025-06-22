@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AgregarProducto.css';
 
 const AgregarProducto = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     productName: '',
     price: '',
@@ -110,6 +112,11 @@ const AgregarProducto = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Función para navegar sin recargar la página
+  const handleVerProductos = () => {
+    navigate('/admin/productos');
   };
 
   return (
@@ -222,6 +229,13 @@ const AgregarProducto = () => {
           {loading ? 'Agregando...' : 'Agregar Producto'}
         </button>
       </form>
+      <br></br>
+      <button
+        onClick={handleVerProductos}
+        className="ver-productos-button"
+      >
+        Ver Productos Agregados
+      </button>
     </div>
   );
 };

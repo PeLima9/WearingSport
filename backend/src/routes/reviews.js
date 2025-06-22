@@ -1,18 +1,25 @@
 import express from "express";
 import reviewsController from "../controllers/reviewsController.js";
+import authMiddleware from '../middleware/authMiddleware.js';
+import adminMiddleware from '../middleware/adminMiddleware.js'; // Middleware para verificar rol admin
 
-//Router
 const router = express.Router();
 
-//Select - Insert
-router.route("/")
-    .get(reviewsController.getReviews)
-    .post(reviewsController.insertReviews);
+// Ruta protegida: solo admins pueden ver todas las reviews con info completa
+router.get("/", authMiddleware, adminMiddleware, reviewsController.getReviews);
 
-//Delete - Update
+// Insertar review (puede ser para cualquier usuario autenticado)
+router.post("/", authMiddleware, reviewsController.insertReviews);
+
+// Obtener reviews por producto
+router.get("/producto/:productId", reviewsController.getReviewsByProduct);
+
+// Validar si usuario compró el producto (solo usuarios autenticados)
+router.get("/usuario-compro/:userId/:productId", authMiddleware, reviewsController.usuarioComproProducto);
+
+// Actualizar y eliminar review (opcional, con autenticación)
 router.route("/:id")
-    .put(reviewsController.updateReviews)
-    .delete(reviewsController.deleteReviews);
+  .put(authMiddleware, reviewsController.updateReviews)
+  .delete(authMiddleware, reviewsController.deleteReviews);
 
-//Export
 export default router;

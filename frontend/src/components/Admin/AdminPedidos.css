@@ -1,0 +1,75 @@
+.admin-pedidos-container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #eef0f9, #dce3f3);
+  border-radius: 10px;
+}
+
+.admin-pedidos-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #1e3a8a;
+}
+
+.pedido-card {
+  border: 1px solid #c5c5c5;
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.pedido-card p {
+  margin: 0.3rem 0;
+}
+
+.pedido-card strong {
+  color: #333;
+}
+
+.pedido-card ul {
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.pedido-card li {
+  margin-bottom: 4px;
+}
+
+.pedido-card select {
+  margin-top: 10px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.95rem;
+  border: 1px solid #b5b5b5;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.pedido-card select:hover {
+  background-color: #e0e0e0;
+}
+
+.estado-badge {
+  font-weight: bold;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  color: white;
+  font-size: 0.85rem;
+}
+
+.estado-badge.pendiente {
+  background-color: #facc15; /* amarillo */
+  color: #333;
+}
+
+.estado-badge.enviado {
+  background-color: #22c55e; /* verde */
+}
+
+.estado-badge.cancelado {
+  background-color: #ef4444; /* rojo */
+}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./CrearCuenta.css";
+import { useNavigate } from "react-router-dom";
 
 const CrearCuenta = () => {
   const [name, setName] = useState("");
@@ -9,6 +9,7 @@ const CrearCuenta = () => {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +20,6 @@ const CrearCuenta = () => {
       return;
     }
 
-    // Validar teléfono básico (solo dígitos, longitud típica 7-15)
     const phoneRegex = /^[0-9]{7,15}$/;
     if (!phoneRegex.test(phone)) {
       setError("Por favor ingresa un número de teléfono válido.");
@@ -35,6 +35,7 @@ const CrearCuenta = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           name,
           email,
@@ -49,11 +50,8 @@ const CrearCuenta = () => {
       if (response.ok) {
         setSuccess("Registro exitoso. Por favor verifica tu correo.");
         setError("");
-        // Opcional: limpiar formulario
-        setName("");
-        setEmail("");
-        setPassword("");
-        setPhone("");
+        // Redirigir a página de verificar código pasando email como query param o state
+        navigate("/verificar-codigo", { state: { email } });
       } else {
         setError(data.message || "Error en el registro");
         setSuccess("");
@@ -70,11 +68,8 @@ const CrearCuenta = () => {
       <div className="login-box">
         <form id="create-account-form" onSubmit={handleSubmit}>
           <div className="input-group">
-            <label htmlFor="name"></label>
             <input
               type="text"
-              id="name"
-              name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Nombre"
@@ -83,11 +78,8 @@ const CrearCuenta = () => {
           </div>
 
           <div className="input-group">
-            <label htmlFor="email"></label>
             <input
               type="email"
-              id="email"
-              name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Correo electrónico"
@@ -96,11 +88,8 @@ const CrearCuenta = () => {
           </div>
 
           <div className="input-group">
-            <label htmlFor="password"></label>
             <input
               type="password"
-              id="password"
-              name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Contraseña"
@@ -109,14 +98,10 @@ const CrearCuenta = () => {
           </div>
 
           <div className="input-group">
-            <label htmlFor="phone"></label>
             <input
               type="tel"
-              id="phone"
-              name="phone"
               value={phone}
               onChange={(e) => {
-                // Solo números
                 const val = e.target.value;
                 if (/^\d*$/.test(val)) setPhone(val);
               }}
@@ -132,9 +117,7 @@ const CrearCuenta = () => {
           {error && <div className="error-message">{error}</div>}
           {success && <div className="success-message">{success}</div>}
 
-          <button type="submit" className="login-button">
-            Crear Cuenta
-          </button>
+          <button type="submit" className="login-button">Crear Cuenta</button>
         </form>
       </div>
     </div>

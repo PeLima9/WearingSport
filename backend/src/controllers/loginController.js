@@ -56,11 +56,14 @@ loginController.login = async (req, res) => {
           return res.json({ success: false, message: "Token generation error" });
         }
 
-        res.cookie("authToken", token, {
-          httpOnly: true,
-          sameSite: "Lax",
-          maxAge: 2 * 60 * 60 * 1000 // 2 horas
-        });
+        // En la parte donde pones la cookie:
+res.cookie("authToken", token, {
+  httpOnly: true,
+  sameSite: "Lax", // o "None" si usas HTTPS y dominios distintos
+  secure: false,    // true en prod con HTTPS
+  maxAge: 2 * 60 * 60 * 1000
+});
+
 
         res.json({
           message: "Login Successful",

@@ -1,6 +1,7 @@
 import { useAuth } from "../context/AuthContext"; // usa el correcto
 import { useEffect, useState } from "react";
 import "./Perfil.css";
+import HistorialPedidos from "../components/HistorialPedidos";
 
 function Perfil() {
   const { logout } = useAuth();
@@ -71,6 +72,7 @@ function Perfil() {
           Cerrar sesión
         </button>
       </div>
+      <HistorialPedidos />
     </div>
   );
 }

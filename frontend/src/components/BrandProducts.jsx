@@ -9,11 +9,12 @@ const BrandProducts = ({ brandName }) => {
   const productsPerPage = 8;
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/Products')
+    fetch('http://localhost:4000/api/Products/con-oferta')
       .then(res => res.json())
       .then(data => {
         const filtered = data.filter(prod => prod.brandId?.brandName === brandName);
         setProductos(filtered);
+        setCurrentPage(1);
       })
       .catch(err => console.error('Error al cargar productos:', err));
   }, [brandName]);
@@ -39,31 +40,50 @@ const BrandProducts = ({ brandName }) => {
   const currentProducts = productos.slice(indexOfFirstProduct, indexOfLastProduct);
   const totalPages = Math.ceil(productos.length / productsPerPage);
 
+  const calcularPrecioConDescuento = (precio, descuento) => {
+    return (precio - (precio * descuento) / 100).toFixed(2);
+  };
+
   return (
     <div className="brand-page">
       <div className="brand-header h1">
-        <h1>{brandName}</h1> {/* Aquí se muestra el nombre dinámico */}
+        <h1>{brandName}</h1>
       </div>
 
       <div className="product-grid">
-        {currentProducts.map((shoe) => (
+        {currentProducts.map((prod) => (
           <div
-            key={shoe._id}
+            key={prod._id}
             className="product-card"
-            onClick={() => handleCardClick(shoe._id)}
+            onClick={() => handleCardClick(prod._id)}
             style={{ cursor: 'pointer' }}
           >
-            <img src={shoe.imageUrl} alt={shoe.productName} />
+            <img src={prod.imageUrl} alt={prod.productName} />
             <div className="product-info">
-              <h3>{shoe.productName}</h3>
-              <p>${shoe.price}</p>
+              <h3>{prod.productName}</h3>
+
+              {prod.oferta ? (
+                <>
+                  <p>
+                    <span className="precio-original">${prod.price.toFixed(2)}</span>{' '}
+                    <span className="precio-descuento">
+                      ${calcularPrecioConDescuento(prod.price, prod.oferta.descuento)}
+                    </span>
+                  </p>
+                  <p className="descuento-text">{prod.oferta.descuento}% OFF</p>
+                </>
+              ) : (
+                <p>${prod.price.toFixed(2)}</p>
+              )}
             </div>
           </div>
         ))}
       </div>
 
       <div className="carousel">
-        <button onClick={handlePrev} className="carousel-button">&#8592;</button>
+        <button onClick={handlePrev} className="carousel-button" disabled={currentPage === 1}>
+          &#8592;
+        </button>
         <div className="carousel-pages">
           {[...Array(totalPages)].map((_, index) => (
             <button
@@ -75,7 +95,9 @@ const BrandProducts = ({ brandName }) => {
             </button>
           ))}
         </div>
-        <button onClick={handleNext} className="carousel-button">&#8594;</button>
+        <button onClick={handleNext} className="carousel-button" disabled={currentPage === totalPages}>
+          &#8594;
+        </button>
       </div>
     </div>
   );

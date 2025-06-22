@@ -1,92 +1,75 @@
-import { createContext, useContext, useEffect, useState } from "react";
+// src/context/AuthContext.jsx
+import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-// Crear el contexto
 const AuthContext = createContext();
 
-// Proveedor del contexto
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Función para iniciar sesión
   const login = async (email, password) => {
     try {
-      const response = await fetch("http://localhost:4000/api/Login", {
+      const res = await fetch("http://localhost:4000/api/login", {
         method: "POST",
-        credentials: "include", // Necesario para enviar la cookie
-        headers: {
-          "Content-Type": "application/json",
-        },
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        const userLogged = {
-          email,
-          rol: data.user.rol,
-        };
-        setUser(userLogged); // Guardar el usuario en contexto
-
-        return {
-          success: true,
-          user: userLogged,
-        };
-      } else {
-        return { success: false, message: data.message };
+      const data = await res.json();
+      if (data.success) {
+        await checkAuth(); // Actualiza user real
+        return { success: true, user: data.user };
       }
-    } catch (error) {
+      return { success: false, message: data.message };
+    } catch (err) {
       return { success: false, message: "Error del servidor" };
     }
   };
 
-  // Función para cerrar sesión
   const logout = async () => {
+    await fetch("http://localhost:4000/api/login/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+    setUser(null);
+    navigate("/inicio");
+  };
+
+  const checkAuth = async () => {
     try {
-      await fetch("http://localhost:4000/api/Login/logout", {
-        method: "POST",
+      const res = await fetch("http://localhost:4000/api/login/profile", {
         credentials: "include",
       });
-
+      const data = await res.json();
+      if (data.success) {
+        setUser({
+          _id: data.user._id,
+          email: data.user.email,
+          rol: data.rol,
+          
+        });
+      } else {
+        setUser(null);
+      }
+    } catch {
       setUser(null);
-      navigate("/inicio");
-    } catch (error) {
-      console.error("Error al cerrar sesión:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Revisa si hay sesión activa al recargar
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await fetch("http://localhost:4000/api/Login/profile", {
-          credentials: "include",
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          setUser({
-            email: data.user.email,
-            rol: data.rol,
-          });
-        }
-      } catch (error) {
-        console.error("Error al verificar sesión:", error);
-      }
-    };
-
     checkAuth();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, logout, checkAuth }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Hook personalizado para consumir el contexto
 export const useAuth = () => useContext(AuthContext);

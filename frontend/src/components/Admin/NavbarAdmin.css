@@ -1,28 +1,83 @@
+/* src/components/NavbarAdmin.css */
 .navbar-admin {
-  background: linear-gradient(135deg, #d1305386, #93c5fd);
-  padding: 3.5rem;
+  background: linear-gradient(135deg, #d1305381, #6db3f2);
+  padding: 1rem 2rem;
   color: white;
-  border-bottom-left-radius: 3rem;  /* Esquina inferior izquierda */
-  border-bottom-right-radius: 3rem; /* Esquina inferior derecha */
-
-
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
   display: flex;
-  justify-content: center; /* Centra horizontalmente el contenido */
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1000;
 }
 
-.navbar-admin ul {
+.navbar-logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+.menu-icon {
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: none;
+  color: white;
+}
+
+/* Estilo general de enlaces */
+.nav-links {
+  display: flex;
+  gap: 1.2rem;
   list-style: none;
-  display: flex;
-  gap: 1rem;
-  margin: 0; /* Elimina margen por defecto */
-  padding: 0; /* Elimina padding por defecto */
 }
 
-.navbar-admin ul li a {
+.nav-links li a {
   color: white;
   text-decoration: none;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.navbar-admin ul li a:hover {
-  text-decoration: underline;
+.nav-links li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #d13053;
+    flex-direction: column;
+    align-items: center;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+  }
+
+  .nav-links.activo {
+    max-height: 500px;
+    padding-bottom: 1rem;
+  }
+
+  .nav-links li {
+    margin: 0.5rem 0;
+  }
+
+  .nav-links li a {
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
 }

@@ -96,6 +96,61 @@
   transform: scale(0.97);
 }
 
+/* En tu Perfil.css o HistorialPedidos.css */
+.historial-pedidos {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.pedido-card {
+  background: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.pedido-card ul {
+  padding-left: 1rem;
+}
+
+.estado-pendiente {
+  color: #f39c12; /* naranja */
+  font-weight: bold;
+}
+
+.estado-enviado {
+  color: #27ae60; /* verde */
+  font-weight: bold;
+}
+
+.estado-cancelado {
+  color: #c0392b; /* rojo */
+  font-weight: bold;
+}
+
+.historial-pedidos {
+  max-height: 400px; /* puedes ajustar esta altura según lo que quieras mostrar */
+  overflow-y: auto;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 1rem;
+  border: 1px solid #ddd;
+}
+
+/* Opcional: estilizar el scrollbar */
+.historial-pedidos::-webkit-scrollbar {
+  width: 8px;
+}
+
+.historial-pedidos::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 10px;
+}
+
+
 /* 🔄 Responsivo para pantallas pequeñas */
 @media (max-width: 700px) {
   .perfil-title {

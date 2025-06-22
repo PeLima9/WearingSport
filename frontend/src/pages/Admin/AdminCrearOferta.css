@@ -1,0 +1,151 @@
+.admin-oferta {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+
+.filtro-marca {
+  margin-bottom: 20px;
+}
+
+.filtro-marca label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.lista-productos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.producto-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 180px;
+  padding: 10px;
+  box-shadow: 0 0 5px rgb(0 0 0 / 0.1);
+  text-align: center;
+  background-color: #fff;
+}
+
+.producto-imagen {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.producto-info h4 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+}
+
+.producto-info p {
+  margin: 0 0 10px 0;
+  color: #555;
+}
+
+.producto-info button {
+  padding: 6px 12px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.producto-info button:hover {
+  background-color: #0056b3;
+}
+
+/* Modal */
+
+.modal-fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-contenido {
+  background-color: white;
+  padding: 25px 30px;
+  border-radius: 8px;
+  width: 350px;
+  max-width: 90%;
+  box-shadow: 0 4px 15px rgb(0 0 0 / 0.2);
+}
+
+.modal-contenido h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.modal-contenido label {
+  display: block;
+  margin: 10px 0 5px 0;
+  font-weight: 600;
+}
+
+.modal-contenido input[type="number"],
+.modal-contenido input[type="date"] {
+  width: 100%;
+  padding: 7px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.modal-botones {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-botones button {
+  padding: 7px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.modal-botones button:first-child {
+  background-color: #28a745;
+  color: white;
+}
+
+.modal-botones button:first-child:hover {
+  background-color: #218838;
+}
+
+.modal-botones .btn-cerrar {
+  background-color: #dc3545;
+  color: white;
+}
+
+.modal-botones .btn-cerrar:hover {
+  background-color: #c82333;
+}
+
+.mensaje {
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: red;
+}
+.mensaje:contains("✅") {
+  color: green;
+}
+
+.admin-oferta2 h2 {
+  color: #ffffff; /* Puedes cambiar este color por el que quieras */
+}
+
