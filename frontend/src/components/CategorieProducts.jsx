@@ -9,7 +9,7 @@ const CategoryProducts = ({ categoryName }) => {
   const productsPerPage = 8;
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/Products/con-oferta')
+    fetch('https://wearingsport-54rw.onrender.com/api/Products/con-oferta')
       .then(res => res.json())
       .then(data => {
         const filtered = data.filter(prod => prod.categories?.categoryName === categoryName);
